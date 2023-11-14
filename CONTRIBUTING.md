@@ -1,6 +1,6 @@
-# Contributing to dciConn
+# Contributing
 
-Thank you for considering a contribution to dciConn! Your help is essential for making it a great tool for developers.
+Thank you for considering a contribution!
 
 ## Quick Contribution Guide
 
