@@ -53,13 +53,15 @@ yarn-error.log*
 /components/*
 /cypress/*
 /pages/*
-/public/*
-/styles/*
-/tests/*
-/utils/*
 !pages/_app.jsx
 !pages/index.jsx
+/public/*
+!public/satellite-earth.jpg
+/styles/*
 !styles/Home.module.css
+!styles/main.scss
+/tests/*
+/utils/*
 
 # others
 .babelrc

@@ -37,7 +37,8 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "react-select": "^5.7.0",
-    "reactstrap": "^9.1.5"
+    "reactstrap": "^9.1.5",
+    "sass": "^1.69.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
