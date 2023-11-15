@@ -12,10 +12,8 @@ jest.mock("next/router", () => ({
   }),
 }));
 
-jest.mock("@auth0/nextjs-auth0", () => {
-  return {
-    getAccessToken: () => "access_token",
-    withApiAuthRequired: (handler) => handler,
-    withPageAuthRequired: (page) => () => page(),
-  };
-});
+jest.mock("@auth0/nextjs-auth0", () => ({
+  getAccessToken: () => "access_token",
+  withApiAuthRequired: (handler) => handler,
+  withPageAuthRequired: (page) => () => page(),
+}));
