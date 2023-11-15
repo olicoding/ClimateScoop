@@ -12,6 +12,7 @@
   "rules": {
     "react/prop-types": "off",
     "prefer-arrow-callback": "off",
+    "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "react/function-component-definition": "off"
   }
