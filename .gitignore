@@ -19,10 +19,6 @@ cypress.env.json
 /.next/
 /out/
 
-# Docker
-.dockerignore
-Dockerfile
-
 # production
 /build
 
@@ -50,24 +46,10 @@ yarn-error.log*
 .idea
 
 # Temporary 
-/components/*
-/cypress/*
-/pages/*
-!pages/_app.jsx
-!pages/index.jsx
-/public/*
-!public/satellite-earth.jpg
-/styles/*
-!styles/Home.module.css
-!styles/main.scss
-/tests/*
-/utils/*
+/cypress/
+/tests/
 
 # others
 .babelrc
-.prettierrc
 cypress.config.js
-exec.ps1
-exec.sh
 yarn.lock
-api-server.js
