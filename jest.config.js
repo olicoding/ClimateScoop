@@ -11,6 +11,6 @@ module.exports = {
   collectCoverageFrom: ["components/**/*.{js,jsx}", "pages/**/*.{js,jsx}"],
   coverageReporters: ["lcov", "text", "text-summary"],
   transform: {
-    "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.(js|jsx)$": "babel-jest",
   },
 };

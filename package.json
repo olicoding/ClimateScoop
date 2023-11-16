@@ -11,14 +11,15 @@
     "start:api": "node api-server",
     "clean": "rm -rf .next",
     "build": "npm run clean && next build",
+    "pipeline": "npm run lint && npm run test",
+    "lint": "eslint . --ext .js,.jsx",
     "test": "npm run clean && jest",
     "test:openHandles": "jest --detectOpenHandles",
     "test:watch": "jest --coverage --watch",
     "test:integration": "start-server-and-test start http-get://localhost:3000 cypress:run",
     "test:integration:watch": "start-server-and-test start http-get://localhost:3000 cypress:open",
     "cypress:run": "cypress run",
-    "cypress:open": "cypress open",
-    "lint": "eslint . --ext .js,.jsx"
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.0.0",
@@ -39,10 +40,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
     "@testing-library/dom": "^8.19.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-    "babel-jest": "^29.3.1",
+    "babel-jest": "^29.7.0",
     "cypress": "^11.2.0",
     "eslint": "^8.53.0",
     "eslint-config-airbnb": "^19.0.4",
