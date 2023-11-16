@@ -7,7 +7,6 @@ notes.txt
 
 # testing
 /coverage
-environment.js
 
 # Cypress
 test-results
@@ -47,9 +46,7 @@ yarn-error.log*
 
 # Temporary 
 /cypress/
-/tests/
 
 # others
-.babelrc
 cypress.config.js
 yarn.lock
