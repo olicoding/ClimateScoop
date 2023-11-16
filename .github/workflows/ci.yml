@@ -17,12 +17,22 @@ jobs:
           node-version: "16"
           cache: "npm"
       - name: Install dependencies
-        run: npm install
-      - name: Clean up
-        run: npm run clean
+        run: npm ci
       - name: Run linter
         run: npm run lint
-      - name: Run tests
+      - name: Run Jest unit tests
         run: npm test
       - name: Build
         run: npm run build
+      - name: Run Cypress e2e tests
+        run: npm run test:integration
+      - name: Delete videos if tests pass
+        if: success()
+        run: rm -f cypress/videos/*.mp4
+      - name: Upload Cypress videos
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          retention-days: 5

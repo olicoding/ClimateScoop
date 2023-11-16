@@ -44,9 +44,5 @@ yarn-error.log*
 .vscode
 .idea
 
-# Temporary 
-/cypress/
-
 # others
-cypress.config.js
 yarn.lock
