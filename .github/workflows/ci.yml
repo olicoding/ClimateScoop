@@ -29,15 +29,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: "recursive"
-          path: "dciConn"
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-          cache: "npm"
       - name: Install dependencies
         run: npm ci
       - name: Run Cypress e2e tests
@@ -45,8 +36,9 @@ jobs:
       - name: Delete videos if tests pass
         if: success()
         run: rm -f cypress/videos/*.mp4
-      - uses: actions/upload-artifact@v3
+      - name: Upload Cypress videos
         if: failure()
+        uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
           path: cypress/videos
