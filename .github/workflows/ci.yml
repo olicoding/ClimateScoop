@@ -17,7 +17,7 @@ jobs:
           node-version: "16"
           cache: "npm"
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Clean up
         run: npm run clean
       - name: Run linter
@@ -30,24 +30,15 @@ jobs:
   cypress-tests:
     needs: build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ["14", "16"]
-        cypress-version: ["latest", "11.2.0"]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: "16"
           cache: "npm"
       - name: Install dependencies
-        run: |
-          retries=3
-          until [[ $retries -le 3 ]]; do
-            npm install && break || ((retries++))
-            sleep 10
-          done
+        run: npm ci
       - name: Run Cypress e2e tests
         run: npm run test:integration
       - name: Delete videos if tests pass
