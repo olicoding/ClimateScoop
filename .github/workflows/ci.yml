@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [main, staging]
 
+strategy:
+  matrix:
+    node-version: ["14", "16"]
+    cypress-version: ["latest", "11.2.0"]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,15 +35,24 @@ jobs:
   cypress-tests:
     needs: build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ${{ matrix.node-version }}
+        cypress-version: ${{ matrix.cypress-version }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: ${{ matrix.node-version }}
           cache: "npm"
       - name: Install dependencies
-        run: npm install
+        run: |
+          retries=3
+          until [[ $retries -le 3 ]]; do
+            npm install && break || ((retries++))
+            sleep 10
+          done
       - name: Run Cypress e2e tests
         run: npm run test:integration
       - name: Delete videos if tests pass
