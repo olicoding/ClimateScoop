@@ -22,7 +22,31 @@ jobs:
         run: npm run clean
       - name: Run linter
         run: npm run lint
-      - name: Run tests
+      - name: Run Jest unit tests
         run: npm test
       - name: Build
         run: npm run build
+
+  cypress-tests:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Run Cypress e2e tests
+        run: npm run test:integration
+      - name: Delete videos if tests pass
+        if: success()
+        run: rm -f cypress/videos/*.mp4
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          retention-days: 5
