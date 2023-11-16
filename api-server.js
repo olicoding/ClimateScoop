@@ -15,11 +15,12 @@ const audience = process.env.AUTH0_AUDIENCE;
 const mongodbDataApiUrl = process.env.MONGODB_DATA_API_URL;
 
 if (!baseUrl || !issuerBaseUrl || !mongodbDataApiUrl) {
-  throw new Error("Please make sure that the file .env.local is in place and populated");
+  throw new Error(
+    "Please make sure that the file .env.local is in place and populated"
+  );
 }
 
 if (!audience) {
-  console.log("AUTH0_AUDIENCE not set in .env.local. Shutting down API server.");
   process.exit(1);
 }
 
@@ -32,18 +33,18 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `${issuerBaseUrl}/.well-known/jwks.json`
+    jwksUri: `${issuerBaseUrl}/.well-known/jwks.json`,
   }),
-  audience: audience,
+  audience,
   issuer: `${issuerBaseUrl}/`,
-  algorithms: ["RS256"]
+  algorithms: ["RS256"],
 });
 
 app.get("/api/shows", checkJwt, (req, res) => {
   res.send({
-    msg: "Your access token was successfully validated!"
+    msg: "Your access token was successfully validated!",
   });
 });
 
-const server = app.listen(port, () => console.log(`API Server listening on port ${port}`));
+const server = app.listen(port);
 process.on("SIGINT", () => server.close());
