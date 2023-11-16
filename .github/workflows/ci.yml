@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          path: dciConn
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -26,11 +24,6 @@ jobs:
         run: npm test
       - name: Build
         run: npm run build
-
-  cypress-tests:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Run Cypress e2e tests
         run: npm run test:integration
       - name: Delete videos if tests pass
