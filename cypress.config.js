@@ -6,7 +6,6 @@ module.exports = defineConfig({
   viewportHeight: 1000,
   reporter: "junit",
   video: true,
-  videoUploadOnPasses: false,
   videosFolder: "cypress/videos",
   fixturesFolder: "cypress/fixtures",
   screenshotsFolder: "cypress/screenshots",
