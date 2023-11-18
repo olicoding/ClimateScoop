@@ -6,9 +6,20 @@ const PageProfile = () => {
   return (
     <div className="user-profile">
       <div className="profile-card">
-        <img src={user.picture} alt={`${user.name}'s profile`} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
+        {user ? (
+          <>
+            <img
+              src={user.picture || "#"}
+              alt={`${user.name || user.nickname || null}'s profile`}
+            />
+            <h2>
+              {user.given_name ? user.name : null || user.nickname || null}
+            </h2>
+            <p>{user.email ?? user.email}</p>
+          </>
+        ) : (
+          <div>no user....</div>
+        )}
       </div>
     </div>
   );
