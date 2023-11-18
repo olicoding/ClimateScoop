@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Header from "./Header";
 
 const Layout = ({ children }) => (
   <>
@@ -10,8 +11,9 @@ const Layout = ({ children }) => (
         name="description"
         content="Coming Soon! New project under construction."
       />
-      <title>dciConn</title>
+      <title>ClimateScoop</title>
     </Head>
+    <Header />
     <main id="app" data-testid="layout">
       <div className="container">{children}</div>
     </main>

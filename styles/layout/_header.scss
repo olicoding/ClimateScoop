@@ -1,3 +1,12 @@
 .header {
   font: inherit;
+
+  .navbar > .container {
+    display: flex;
+  }
+}
+
+.nav-link {
+  color: white;
+  font-weight: 500;
 }
