@@ -5,17 +5,16 @@ const cors = require("cors");
 const helmet = require("helmet");
 const { expressjwt: jwt } = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
-const logger = require("./winston");
+const logger = require("./lib/winston");
 
 const app = express();
 const port = process.env.API_PORT || 3001;
 const baseUrl = process.env.AUTH0_BASE_URL;
 const issuerBaseUrl = process.env.AUTH0_ISSUER_BASE_URL;
 const audience = process.env.AUTH0_AUDIENCE;
-const mongodbDataApiUrl = process.env.MONGODB_DATA_API_URL;
 
-if (!baseUrl || !issuerBaseUrl || !audience || !mongodbDataApiUrl) {
-  logger.error(`Missing required environment variable`);
+if (!baseUrl || !issuerBaseUrl || !audience) {
+  logger.error(`Missing a required environment variable`);
   process.exit(1);
 }
 
@@ -31,7 +30,7 @@ app.use((req, res, next) => {
 });
 
 app.use(helmet());
-app.use(cors({ origin: [baseUrl, mongodbDataApiUrl] }));
+app.use(cors({ origin: baseUrl }));
 
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({

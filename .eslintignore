@@ -16,7 +16,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/lib/
+/lib/winston/
 
 .env.local
 .env.development.local

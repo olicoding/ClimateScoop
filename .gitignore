@@ -30,7 +30,7 @@ cypress.env.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/lib/
+/lib/winston/
 
 # local env files
 .env.local
