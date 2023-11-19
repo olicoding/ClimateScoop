@@ -1,7 +1,8 @@
 import { ResponsiveLine } from "@nivo/line";
+import Loading from "../Loading";
 
 const ChartArctic = ({ arcticData }) => {
-  if (!arcticData) return <div className="spinner" />;
+  if (!arcticData) return <Loading />;
 
   const sortedArcticData = arcticData.map(({ year, extent }) => ({
     x: year,

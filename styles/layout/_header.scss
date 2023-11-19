@@ -1,9 +1,17 @@
+.header,
+.navbar,
+.nav-list,
+li,
+a {
+  @include fadeInAnimation;
+}
+
 .header {
   @include header-style;
   height: $header-height;
   background-color: map-get($colors, header-bg);
   box-shadow: 0 4px 8px map-get($colors, lighter-bg);
-  transition: map-get($transitions, basic);
+  transition: map-get($transitions, transform), map-get($transitions, opacity);
   z-index: 10;
 
   &.hide {
@@ -25,6 +33,7 @@
         a {
           color: white;
           text-decoration: none;
+
           &:hover {
             color: map-get($colors, hover-highlight);
           }

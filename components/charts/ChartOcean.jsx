@@ -1,7 +1,8 @@
 import { ResponsiveLine } from "@nivo/line";
+import Loading from "../Loading";
 
 function ChartOcean({ oceanData }) {
-  if (!oceanData) return <div className="spinner" />;
+  if (!oceanData) return <Loading />;
 
   const sortedOceanData = Object.entries(oceanData)
     .sort(([yearA], [yearB]) => yearA - yearB)

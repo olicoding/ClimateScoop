@@ -1,3 +1,11 @@
+.profile-card,
+.profile-picture,
+.profile-name,
+.profile-email {
+  opacity: 0;
+  @include fadeInAnimation;
+}
+
 .user-profile {
   display: flex;
   justify-content: center;
@@ -36,13 +44,16 @@
 
   @media (min-width: 600px) and (min-height: 500px) {
     padding: 2rem;
+
     .profile-picture {
       width: 150px;
       height: 150px;
     }
+
     .profile-name {
       font-size: 1.5rem;
     }
+
     .profile-email {
       font-size: 1.2rem;
     }

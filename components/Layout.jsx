@@ -11,18 +11,12 @@ const Layout = ({ children }) => (
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta
         name="description"
-        content="Coming Soon! New project under construction."
+        content="Welcome to ClimateScoop! We provide a hawk-eye view on climate change."
       />
       <title>ClimateScoop</title>
     </Head>
     <div className="bgImage">
-      <Image
-        src={bgImage}
-        alt="Background"
-        layout="fill"
-        objectFit="cover"
-        priority
-      />
+      <Image src={bgImage} alt="Background" priority />
     </div>
     <Header className="header" />
     <main id="app" data-testid="layout">

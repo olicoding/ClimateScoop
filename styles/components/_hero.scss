@@ -1,3 +1,11 @@
+.hero,
+.hero-content,
+.hero-subtitle,
+.hero-title {
+  opacity: 0;
+  @include fadeInAnimation;
+}
+
 .hero {
   @include flex-center;
   flex-direction: column;
@@ -21,6 +29,27 @@
       margin-top: 1rem;
       text-transform: uppercase;
       letter-spacing: 3px;
+    }
+  }
+}
+
+.arrow-container {
+  opacity: 0;
+  @include fadeInAnimation;
+  @include pulsateAnimation;
+  margin: 0 auto;
+  position: absolute;
+  z-index: -1;
+  bottom: 5%;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media (max-height: 500px) {
+  .arrow-container {
+    bottom: 5px;
+    img {
+      scale: 0.6;
     }
   }
 }

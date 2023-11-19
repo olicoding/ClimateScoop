@@ -1,7 +1,8 @@
 import { ResponsiveLine } from "@nivo/line";
+import Loading from "../Loading";
 
 const ChartGlobal = ({ globalData }) => {
-  if (!globalData) return <div className="spinner" />;
+  if (!globalData) return <Loading />;
 
   const yearInterval = 20;
   const sortedYears = Array.from(

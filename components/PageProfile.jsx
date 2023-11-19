@@ -4,7 +4,7 @@ const PageProfile = () => {
   const { user } = useUser();
 
   return (
-    <div className="user-profile">
+    <section className="user-profile">
       <div className="profile-card">
         {user ? (
           <>
@@ -24,7 +24,7 @@ const PageProfile = () => {
           <div>No user data available.</div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 
