@@ -1,12 +1,35 @@
 .header {
-  font: inherit;
+  @include header-style;
+  height: $header-height;
+  background-color: map-get($colors, header-bg);
+  box-shadow: 0 4px 8px map-get($colors, lighter-bg);
+  transition: map-get($transitions, basic);
+  z-index: 10;
 
-  .navbar > .container {
-    display: flex;
+  &.hide {
+    transform: translateY(-100%);
   }
-}
 
-.nav-link {
-  color: white;
-  font-weight: 500;
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+
+      li {
+        a {
+          color: white;
+          text-decoration: none;
+          &:hover {
+            color: map-get($colors, hover-highlight);
+          }
+        }
+      }
+    }
+  }
 }

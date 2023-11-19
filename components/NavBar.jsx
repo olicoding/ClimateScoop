@@ -6,9 +6,9 @@ const NavBar = () => {
 
   return (
     <nav className="navbar">
-      <ul>
+      <ul className="nav-list">
         <li>
-          <Link href="/">Home</Link>
+          <Link href="/">HOME</Link>
         </li>
         {!user ? (
           <li>

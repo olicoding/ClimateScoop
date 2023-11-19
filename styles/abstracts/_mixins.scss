@@ -3,6 +3,15 @@
   flex-direction: column;
 }
 
-@mixin box-shadow($x, $y, $blur, $color) {
-  box-shadow: $x $y $blur $color;
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin header-style {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
 }

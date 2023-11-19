@@ -9,16 +9,19 @@ const PageProfile = () => {
         {user ? (
           <>
             <img
-              src={user.picture || "#"}
-              alt={`${user.name || user.nickname || null}'s profile`}
+              className="profile-picture"
+              src={user.picture || "/default-profile.jpg"}
+              alt={`${user.name || user.nickname || "User"}'s profile`}
             />
-            <h2>
-              {user.given_name ? user.name : null || user.nickname || null}
+            <h2 className="profile-name">
+              {user.given_name
+                ? user.name
+                : null || user.nickname || "Anonymous"}
             </h2>
-            <p>{user.email ?? user.email}</p>
+            <p className="profile-email">{user.email}</p>
           </>
         ) : (
-          <div>no user....</div>
+          <div>No user data available.</div>
         )}
       </div>
     </div>

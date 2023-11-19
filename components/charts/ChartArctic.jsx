@@ -1,76 +1,63 @@
 import { ResponsiveLine } from "@nivo/line";
 
 const ChartArctic = ({ arcticData }) => {
-  if (!arcticData) return <div className="spinner"></div>;
-  return <div>-arcticData-</div>;
+  if (!arcticData) return <div className="spinner" />;
 
-  const rawdata = [...arcticData];
-  const formattedData = rawdata.map(({ year, extent }) => ({
+  const sortedArcticData = arcticData.map(({ year, extent }) => ({
     x: year,
     y: extent,
   }));
 
+  const uniqueYears = [...new Set(arcticData.map((item) => item.year))];
+  const visibleYears = uniqueYears.filter((year) => year % 5 === 0);
+
+  const extents = arcticData.map((item) => item.extent);
+  const minExtent = Math.floor(Math.min(...extents));
+  const maxExtent = Math.ceil(Math.max(...extents));
+  const extentTicks = Array.from(
+    { length: maxExtent - minExtent + 1 },
+    (_, i) => minExtent + i
+  );
+
   return (
-    <div
-      style={{
-        height: "25vh",
-        minHeight: "150px",
-        width: "100%",
-        background: "var(--dark-green)",
-        fontSize: "13px",
-        marginBottom: "5em",
-        background:
-          "linear-gradient(to top, rgba(164, 195, 178, 0.9), rgba(107, 144, 128, 0.4))",
-        borderRadius: "15px",
-        boxShadow:
-          "0 0 0 rgba(164, 195, 178, 0.5), 0 0 0 rgba(164, 195, 178, 0.5), 0px -10px 10px rgba(0, 0, 0, 0.5)",
-      }}
-    >
-      <h2
-        style={{ textAlign: "center", marginTop: "1em", color: "var(--white)" }}
-      >
-        Melted Polar Ice Caps ( million km² )
-      </h2>
+    <div className="chart-container">
+      <h2 className="chart-title">Melted Polar Ice Caps ( million km² )</h2>
       <ResponsiveLine
-        data={[{ id: "Extent", data: formattedData }]}
-        theme={{
-          textColor: "var(--white)",
-        }}
+        data={[{ id: "Extent", data: sortedArcticData }]}
         key="arctic-temperature-chart"
-        margin={{ top: 15, right: 15, bottom: 40, left: 40 }}
-        xScale={{ type: "linear", min: "1979", max: "2023" }}
-        yScale={{
-          type: "linear",
-          min: 0,
-          max: "auto",
-          stacked: true,
-          reverse: false,
-        }}
-        axisTop={null}
-        axisRight={null}
+        margin={{ top: 15, right: 15, bottom: 60, left: 40 }}
         axisBottom={{
-          tickValues: [1980, 1990, 2000, 2010, 2020],
-          legendOffset: 36,
-          tickPadding: 8,
+          tickValues: visibleYears,
           tickRotation: -45,
-          format: (value) => `${value}`,
-          style: { fontSize: "14px", fill: "white" },
         }}
         axisLeft={{
-          legend: "",
-          legendOffset: -50,
-          tickSize: 5,
+          tickValues: [0, 1, 2, ...extentTicks],
           tickPadding: 8,
         }}
         colors={["#008080", "#F0E68C"]}
-        // colors={{ scheme: "set1" }}
         pointSize={5}
+        curve="cardinal"
         pointColor={{ theme: "background" }}
         pointBorderWidth={1}
         pointBorderColor={{ from: "serieColor" }}
-        enableArea={true}
-        areaOpacity={0.2}
-        useMesh={false}
+        enableArea
+        enableGridX={false}
+        areaOpacity={0.25}
+        theme={{
+          textColor: "#ffffff",
+          axis: {
+            ticks: {
+              line: {
+                strokeWidth: 0,
+              },
+              text: {
+                fontSize: "12px",
+                textTransform: "uppercase",
+                fill: "#ffffff",
+              },
+            },
+          },
+        }}
       />
     </div>
   );

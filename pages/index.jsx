@@ -1,5 +1,5 @@
-import PageHome from "../components/PageHome";
 import axios from "axios";
+import PageHome from "../components/PageHome";
 
 export default function Home(props) {
   return <PageHome chartsData={props} />;
@@ -13,13 +13,11 @@ export async function getStaticProps() {
       "https://global-warming.org/api/arctic-api",
     ];
 
-    const [globalResponse, oceanResponse, arcticResponse] = await Promise.all(
-      urls.map((url) => axios.get(url))
+    const responses = await Promise.all(urls.map((url) => axios.get(url)));
+    const [globalData, oceanData, arcticData] = responses.map(
+      (response) => response.data.result || response.data.arcticData
     );
 
-    const globalData = globalResponse.data.result;
-    const oceanData = oceanResponse.data.result;
-    const arcticData = arcticResponse.data.arcticData;
     return {
       props: { globalData, oceanData, arcticData },
       revalidate: 1000,

@@ -1,16 +1,12 @@
-import ChartGlobalTemp from "./charts/ChartGlobalTemp";
-import ChartOceanTemp from "./charts/ChartOceanTemp";
+import ChartGlobal from "./charts/ChartGlobal";
+import ChartOcean from "./charts/ChartOcean";
 import ChartArctic from "./charts/ChartArctic";
 
-function ChartsComponent({ data }) {
-  const globalData = data.globalData;
-  const oceanData = data.oceanData;
-  const arcticData = data.arcticData;
-
+function ChartsComponent({ data: { globalData, oceanData, arcticData } }) {
   return (
-    <div>
-      <ChartGlobalTemp globalData={globalData} />
-      <ChartOceanTemp oceanData={oceanData} />
+    <div className="charts-container">
+      <ChartGlobal globalData={globalData} />
+      <ChartOcean oceanData={oceanData} />
       <ChartArctic arcticData={arcticData} />
     </div>
   );

@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Image from "next/image";
+import bgImage from "../public/satellite-earth.jpg";
 import Header from "./Header";
 
 const Layout = ({ children }) => (
@@ -13,7 +15,16 @@ const Layout = ({ children }) => (
       />
       <title>ClimateScoop</title>
     </Head>
-    <Header />
+    <div className="bgImage">
+      <Image
+        src={bgImage}
+        alt="Background"
+        layout="fill"
+        objectFit="cover"
+        priority
+      />
+    </div>
+    <Header className="header" />
     <main id="app" data-testid="layout">
       <div className="container">{children}</div>
     </main>

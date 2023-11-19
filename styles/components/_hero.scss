@@ -1,0 +1,26 @@
+.hero {
+  @include flex-center;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 3em;
+  width: 100%;
+
+  .hero-content {
+    text-align: center;
+    background-color: map-get($colors, hero-bg);
+    box-shadow: 0 4px 8px map-get($colors, lighter-bg);
+    color: map-get($colors, white);
+    width: 100%;
+    padding: 2em;
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .hero-subtitle {
+      margin-top: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+  }
+}
