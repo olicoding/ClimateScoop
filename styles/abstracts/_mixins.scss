@@ -3,6 +3,28 @@
   flex-direction: column;
 }
 
-@mixin box-shadow($x, $y, $blur, $color) {
-  box-shadow: $x $y $blur $color;
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin header-style {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}
+
+@mixin bgFadeInAnimation {
+  animation: map-get($animations, long-fade-in),
+    map-get($transitions, long-opacity);
+}
+
+@mixin fadeInAnimation {
+  animation: map-get($animations, fade-in);
+}
+
+@mixin pulsateAnimation {
+  animation: map-get($animations, pulsate);
 }
