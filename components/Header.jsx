@@ -9,7 +9,7 @@ const Header = () => {
   useEffect(() => {
     if (scrollDirection === "down" && !isTop) {
       setHideHeader(true);
-    } else {
+    } else if (scrollDirection === "up" || isTop) {
       setHideHeader(false);
     }
   }, [scrollDirection, isTop]);

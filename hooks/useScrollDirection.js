@@ -1,29 +1,28 @@
 import { useState, useEffect } from "react";
 
 const useScrollDirection = () => {
-  const [scrollDirection, setScrollDirection] = useState("up");
+  const [scrollDirection, setScrollDirection] = useState(null);
   const [isTop, setIsTop] = useState(true);
 
   useEffect(() => {
-    let { lastScrollY } = window;
+    let lastScrollY = 0;
 
     const updateScrollDirection = () => {
-      const { scrollY } = window;
+      const currentScrollY = window.scrollY;
 
-      if (scrollY === 0) {
-        setIsTop(true);
+      setIsTop(currentScrollY === 0);
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection("down");
+      } else if (currentScrollY < lastScrollY) {
         setScrollDirection("up");
-      } else {
-        setIsTop(false);
-        setScrollDirection(scrollY > lastScrollY ? "down" : "up");
       }
 
-      lastScrollY = scrollY;
+      lastScrollY = currentScrollY;
     };
 
-    window.addEventListener("scroll", updateScrollDirection);
+    window.addEventListener("scroll", updateScrollDirection, { passive: true });
     return () => window.removeEventListener("scroll", updateScrollDirection);
-  }, []);
+  }, [isTop]);
 
   return { scrollDirection, isTop };
 };

@@ -1,8 +1,4 @@
-.header,
-.navbar,
-.nav-list,
-li,
-a {
+.nav-list {
   @include fadeInAnimation;
 }
 

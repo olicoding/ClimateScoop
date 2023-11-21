@@ -5,7 +5,7 @@ import ChartOcean from "./charts/ChartOcean";
 import ChartArctic from "./charts/ChartArctic";
 
 function ChartsComponent({ data: { globalData, oceanData, arcticData } }) {
-  const chartsRef = useContext(Context);
+  const { chartsRef } = useContext(Context);
 
   return (
     <div className="charts-container" ref={chartsRef}>
