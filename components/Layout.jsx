@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import bgImage from "../public/satellite-earth.jpg";
+import bgImage from "../public/bg.jpg";
 import Header from "./Header";
 
 const Layout = ({ children }) => (

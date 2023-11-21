@@ -1,5 +1,6 @@
-import { useUser } from "@auth0/nextjs-auth0/client";
 import dynamic from "next/dynamic";
+import { useContext } from "react";
+import { Context } from "../context/ContextProvider";
 import Hero from "./Hero";
 
 const ChartsComponent = dynamic(() => import("./ChartsComponent"), {
@@ -7,12 +8,12 @@ const ChartsComponent = dynamic(() => import("./ChartsComponent"), {
 });
 
 const PageHome = ({ chartsData }) => {
-  const { user } = useUser();
+  const { user, username } = useContext(Context);
 
   return (
     <>
       <section className="hero">
-        <Hero />
+        <Hero username={username} />
       </section>
       <section className="charts-section">
         {user && chartsData ? <ChartsComponent data={chartsData} /> : null}
