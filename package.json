@@ -1,6 +1,6 @@
 {
-  "name": "dciconn",
-  "version": "0.1.0",
+  "name": "climatescoop",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "concurrently \"next dev\" \"node api-server\"",

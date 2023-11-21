@@ -1,19 +1,15 @@
-.hero,
-.hero-content,
-.hero-subtitle,
-.hero-title {
-  opacity: 0;
-  @include fadeInAnimation;
-}
-
 .hero {
   @include flex-center;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: 3em;
+  padding-top: 0.5em;
   width: 100%;
+  position: relative;
+  z-index: 1;
 
   .hero-content {
+    opacity: 0;
+    @include fadeInAnimation;
     text-align: center;
     background-color: map-get($colors, hero-bg);
     box-shadow: 0 4px 8px map-get($colors, lighter-bg);
@@ -29,27 +25,6 @@
       margin-top: 1rem;
       text-transform: uppercase;
       letter-spacing: 3px;
-    }
-  }
-}
-
-.arrow-container {
-  opacity: 0;
-  @include fadeInAnimation;
-  @include pulsateAnimation;
-  margin: 0 auto;
-  position: absolute;
-  z-index: -1;
-  bottom: 5%;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-@media (max-height: 500px) {
-  .arrow-container {
-    bottom: 5px;
-    img {
-      scale: 0.6;
     }
   }
 }

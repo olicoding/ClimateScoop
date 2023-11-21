@@ -24,38 +24,35 @@
   box-shadow: 0 4px 8px map-get($colors, lighter-bg);
 
   .profile-picture {
+    opacity: 0;
+    @include bgFadeInAnimation;
+    position: relative;
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem;
+    overflow: hidden;
+    margin: 0 auto 1em;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+    }
   }
 
   .profile-name {
-    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-size: clamp(1.5rem, 2.5vw, 1.8rem);
     color: map-get($colors, title-color);
     margin-bottom: 0.5rem;
   }
 
   .profile-email {
-    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-size: clamp(1.3rem, 2.5vw, 1.5rem);
     color: map-get($colors, white);
-  }
-
-  @media (min-width: 600px) and (min-height: 500px) {
-    padding: 2rem;
-
-    .profile-picture {
-      width: 150px;
-      height: 150px;
-    }
-
-    .profile-name {
-      font-size: 1.5rem;
-    }
-
-    .profile-email {
-      font-size: 1.2rem;
-    }
   }
 }
