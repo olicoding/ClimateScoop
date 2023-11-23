@@ -29,10 +29,10 @@ const Hero = ({ username }) => {
       <div className="hero-content">
         <h1 className="hero-title">ClimateScoop</h1>
         <p className="hero-subtitle">
-          {user ? `Welcome ${username}` : "Login To Explore Climate Data"}
+          {user ? `Welcome ${username}` : "Welcome"}
         </p>
       </div>
-      {user && isTop ? (
+      {isTop ? (
         <div
           className="arrow-container"
           onClick={scrollToCharts}

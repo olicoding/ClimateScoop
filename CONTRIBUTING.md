@@ -1,32 +1,32 @@
-# Contributing
+# Contributing to ClimateScoop
 
-Thank you for considering a contribution!
+We appreciate your interest in contributing to ClimateScoop! Here's how you can help:
 
 ## Quick Contribution Guide
 
-- **Bug Reports**: If you spot a problem, open an issue using the [issue tracker](https://github.com/olicoding/dciConn/issues). Please describe the bug with as much detail as possible.
-- **Feature Proposals**: For new features or enhancements, discuss them via new issues before making any code changes.
-- **Pull Requests**: Changes can be proposed via pull requests (PRs). Here's a quick how-to:
+- **Bug Reports**: Found a bug? Open an issue in our [issue tracker](https://github.com/olicoding/ClimateScoop/issues) with detailed information.
+- **Feature Proposals**: Have ideas for new features or enhancements? Initiate a discussion via new issues before any code changes.
+- **Pull Requests**: Ready to contribute code? Here's how:
   1. Fork the repository and create your branch from `main`.
-  2. Write clear, concise code and commit your changes.
-  3. Open a PR with a descriptive title and detailed description.
+  2. Write clean, concise code and make your commits.
+  3. Open a PR from your branch to the `development` branch, providing a descriptive title and detailed explanation.
 
 ## Coding Standards
 
-- Use 2 spaces for indentation.
-- Follow the existing coding style as much as possible.
+- Ensure consistent indentation.
+- Follow the existing code style for a cohesive look.
 
 ## Testing
 
-- Add tests for any new functionality.
-- Ensure that the entire test suite passes before submitting your PR.
+- Add tests for new features or functionality.
+- Make sure all tests pass before submitting your PR.
 
 ## Documentation
 
-- Update documentation to reflect any changes in the API or added features.
+- Update or add documentation reflecting your changes or new features.
 
 ## License
 
-By contributing to dciConn, you agree that your contributions will be licensed under the [MIT License](LICENSE.md).
+Your contributions will be licensed under the project's [MIT License](LICENSE.md).
 
-Happy coding!
+Happy contributing!
