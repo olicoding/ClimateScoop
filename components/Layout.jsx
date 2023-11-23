@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import bgImage from "../public/bg.jpg";
 import Header from "./Header";
+import PrivacyBanner from "./PrivacyBanner";
 
 const Layout = ({ children }) => (
   <>
@@ -22,6 +23,7 @@ const Layout = ({ children }) => (
     <main id="app" data-testid="layout">
       <div className="container">{children}</div>
     </main>
+    <PrivacyBanner />
   </>
 );
 

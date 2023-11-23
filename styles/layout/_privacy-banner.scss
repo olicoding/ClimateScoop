@@ -1,0 +1,31 @@
+.privacy-banner {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: map-get($colors, ocean-green);
+  text-align: center;
+  padding: 4px 8px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    background-color: map-get($colors, lighter-bg);
+    color: map-get($colors, pale-mint);
+    letter-spacing: 1px;
+    border: none;
+    padding: 5px 14px;
+    margin: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: transparent;
+      color: map-get($colors, hover-highlight);
+      transition: map-get($transitions, all);
+    }
+  }
+}
