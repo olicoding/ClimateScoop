@@ -8,7 +8,11 @@
   background-color: map-get($colors, header-bg);
   box-shadow: 0 4px 8px map-get($colors, lighter-bg);
   transition: map-get($transitions, transform), map-get($transitions, opacity);
-  z-index: 10;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &.hide {
     transform: translateY(-100%);
@@ -23,7 +27,7 @@
     .nav-list {
       list-style: none;
       display: flex;
-      gap: 2rem;
+      gap: 2.5em;
 
       li {
         a {
