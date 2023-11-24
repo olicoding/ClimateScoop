@@ -29,7 +29,7 @@ const Hero = ({ username }) => {
       <div className="hero-content">
         <h1 className="hero-title">ClimateScoop</h1>
         <p className="hero-subtitle">
-          {user ? `Welcome ${username}` : "Welcome"}
+          {user ? `Welcome ${username}` : "Visual Insights on Climate Change"}
         </p>
       </div>
       {isTop ? (
