@@ -9,9 +9,12 @@
 @import "components/charts";
 @import "components/loading";
 
+@import "layout/layout";
 @import "layout/header";
 @import "layout/bg";
 @import "layout/privacy-banner";
+@import "layout/footer";
 
 @import "pages/home";
 @import "pages/profile";
+@import "pages/tos-privacy";
