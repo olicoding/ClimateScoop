@@ -21,7 +21,21 @@ const PageProfile = () => {
           />
         </div>
         <h2 className="profile-name">{username}</h2>
-        <p className="profile-email">{user.name}</p>
+        <div className="new-user-message">
+          <p>
+            Thanks for joining ClimateScoop! We&apos;re currently hard at work
+            developing exclusive features for our registered users. While these
+            aren&apos;t quite ready yet, we promise they&apos;ll be worth the
+            wait. In the meantime, enjoy exploring the climate charts on the
+            homepage - they&apos;re live data, and just a glimpse of the
+            insightful content we provide.
+          </p>
+          <p>
+            We value your privacy - so no unexpected emails from us. Just pure,
+            climate-focused content here on our web app. Be sure to check back
+            soon for fresh updates and new features designed just for you.
+          </p>
+        </div>
       </div>
     </section>
   );
