@@ -11,6 +11,7 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  padding: 5em 0 2em;
 }
 
 .profile-card {
@@ -44,13 +45,20 @@
   }
 
   .profile-name {
-    font-size: clamp(1.5rem, 2.5vw, 1.8rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
     color: map-get($colors, title-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1em;
+    text-transform: uppercase;
   }
 
-  .profile-email {
-    font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+  .new-user-message {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: map-get($colors, white);
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
   }
 }
