@@ -12,10 +12,8 @@ export const ContextProvider = ({ children }) => {
     if (!user) return "Guest";
 
     return user["https://climatescoop/username"]
-      ? `${user["https://climatescoop/username"].charAt(0).toUpperCase()}${user[
-          "https://climatescoop/username"
-        ].slice(1)}`
-      : user.nickname || "Guest";
+      ? user["https://climatescoop/username"]
+      : user.name || user.nickname || "Guest";
   }, [user, isLoading]);
 
   const contextValue = useMemo(
