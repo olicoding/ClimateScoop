@@ -1,66 +1,60 @@
 import { ResponsiveLine } from "@nivo/line";
 import Loading from "../Loading";
 
-const ChartGlobal = ({ globalData }) => {
+const ChartGlobal = ({ globalData, commonProps }) => {
   if (!globalData) return <Loading />;
 
-  const yearInterval = 20;
-  const sortedYears = Array.from(
-    new Set(globalData.map((item) => item.time.split(".")[0]))
-  );
-  const visibleYears = sortedYears.filter(
-    (_, index) => index % yearInterval === 0
-  );
-
-  const globalChartData = globalData.reduce((acc, { time, station }) => {
+  const aggregatedData = globalData.reduce((acc, { time, station }) => {
     const year = time.split(".")[0];
     if (!acc[year]) {
-      acc[year] = { id: year, data: [] };
+      acc[year] = { min: station, max: station };
+    } else {
+      acc[year].min = Math.min(acc[year].min, station);
+      acc[year].max = Math.max(acc[year].max, station);
     }
-    acc[year].data.push({ x: Number(time), y: Number(station) });
     return acc;
   }, {});
 
-  const sortedGlobalData = Object.values(globalChartData);
+  const chartData = Object.entries(aggregatedData).map(
+    ([year, { min, max }]) => ({
+      x: year,
+      y: (min + max) / 2,
+      min,
+      max,
+    })
+  );
+
+  const customTooltip = ({ slice }) => (
+    <div
+      style={{
+        color: "#00918E",
+        background: "white",
+        padding: "9px",
+        border: "2px solid #6b9080",
+      }}
+    >
+      <span style={{ fontWeight: "bold" }}>
+        {slice.points[0].data.xFormatted}:
+      </span>{" "}
+      {slice.points[0].data.min.toFixed(2)} to{" "}
+      {slice.points[0].data.max.toFixed(2)} °C
+    </div>
+  );
 
   return (
     <div className="chart-container">
       <h2 className="chart-title">Global Warming ( °C )</h2>
       <ResponsiveLine
-        data={sortedGlobalData}
+        data={[{ id: "global-temp", data: chartData }]}
         key="global-temperature-chart"
-        margin={{ top: 15, right: 15, bottom: 60, left: 40 }}
-        xScale={{ type: "linear", min: "auto", max: "auto" }}
-        yScale={{ type: "linear", min: -1.0, max: 1.4 }}
-        curve="monotoneX"
-        axisBottom={{
-          tickValues: visibleYears,
-          tickRotation: -45,
-        }}
+        xScale={{ type: "linear", min: "auto", max: 2030 }}
+        yScale={{ type: "linear", min: "auto", max: 1.5 }}
+        gridYValues={5}
         axisLeft={{
-          tickValues: [-1, -0.5, 0, 0.5, 1, 1.5],
-          legendOffset: -40,
-          legendPosition: "middle",
+          tickValues: [-0.5, 0, 0.5, 1, 1.5],
         }}
-        enablePoints={false}
-        enableGridX={false}
-        colors={["#00918E"]}
-        lineWidth={0.8}
-        theme={{
-          textColor: "#ffffff",
-          axis: {
-            ticks: {
-              line: {
-                strokeWidth: 0,
-              },
-              text: {
-                fontSize: "12px",
-                textTransform: "uppercase",
-                fill: "#ffffff",
-              },
-            },
-          },
-        }}
+        sliceTooltip={customTooltip}
+        {...commonProps}
       />
     </div>
   );
