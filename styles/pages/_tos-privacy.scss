@@ -1,18 +1,20 @@
 .content-page-tos-privacy {
+  opacity: 0;
+  @include fadeInAnimation;
   max-width: 800px;
-  padding: 4em 1em 2em;
-  margin: 4.5em 0.6em 1em;
+  padding: 3em 1em 2em;
+  margin: 5em 0.6em 1em;
   background-color: map-get($colors, hero-bg);
   box-shadow: 0 4px 8px map-get($colors, lighter-bg);
   border-radius: 10px;
   color: map-get($colors, frost-white);
 
   @media (min-width: 800px) {
-    margin: 4em auto 1em;
+    margin: 5em auto 1em;
   }
 
   .page-title {
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 3vw, 2rem);
     margin-bottom: 1rem;
     text-align: center;
   }
@@ -20,13 +22,13 @@
   .page-content {
     h2 {
       margin-top: 1.5rem;
-      font-size: 1.6rem;
+      font-size: clamp(1.4rem, 3vw, 1.6rem);
       color: map-get($colors, seafoam-green);
     }
 
     p,
     li {
-      font-size: 1.2rem;
+      font-size: clamp(1.1rem, 3vw, 1.2rem);
       line-height: 1.4;
       margin-top: 0.5rem;
     }
