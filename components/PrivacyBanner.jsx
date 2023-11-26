@@ -24,7 +24,7 @@ function PrivacyBanner() {
         stored. Only anonymized traffic via Vercel Analytics.
       </p>
       <button onClick={handleAcknowledge} type="button">
-        Okay!
+        okay!
       </button>
     </div>
   );

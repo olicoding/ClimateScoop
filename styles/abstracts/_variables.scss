@@ -51,6 +51,6 @@ $transitions: (
 
 $animations: (
   fade-in: fadeIn 0.3s ease-in-out forwards,
-  long-fade-in: fadeIn 1s ease-out forwards,
+  long-fade-in: fadeIn 1s ease-in-out forwards,
   pulsate: pulsate 2s ease-in-out 0.3s infinite,
 );

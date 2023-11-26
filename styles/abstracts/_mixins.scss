@@ -17,8 +17,7 @@
 }
 
 @mixin bgFadeInAnimation {
-  animation: map-get($animations, long-fade-in),
-    map-get($transitions, long-opacity);
+  animation: map-get($animations, long-fade-in);
 }
 
 @mixin fadeInAnimation {
