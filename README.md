@@ -29,6 +29,8 @@ The platform features engaging charts visualizing climate indicators like global
 ## Technical Features
 
 - **Interactive Data Visualization**: Using `@nivo/line` for easily understandable climate data presentations.
+- **Data Caching with Redis**: Implemented Redis for efficient caching of API responses, reducing load times and API call frequency.
+- **Advanced Error Handling**: Enhanced application resilience with comprehensive error handling and logging using Winston.
 - **Auth0 Integration**: Secure user authentication, with plans for more interactive, personalized features.
 - **Responsive Design**: Optimized for a seamless experience across various devices.
 - **Performance Optimization**: Leverages Next.js for efficient server-side rendering and dynamic data loading.
@@ -38,6 +40,7 @@ The platform features engaging charts visualizing climate indicators like global
 
 - **Linting**: Ensuring code quality and consistency.
 - **Automated Testing**: Incorporating Jest and Cypress for comprehensive testing.
+- **Redis Integration**: Configuration management for Redis in different environments.
 - **Staging and Production**: Separate environments for thorough testing and safe deployment.
 
 ## Installation and Usage
@@ -47,19 +50,22 @@ The platform features engaging charts visualizing climate indicators like global
 
 1. Clone the repository.
 2. Install dependencies with `npm install`.
-3. Configure `.env.local` as per `.env.sample`.
-4. Start the server with `npm run dev`.
+3. Set up a local Redis server or configure a Redis cloud instance.
+4. Configure `.env.local` with Redis connection details and other environment variables as per `.env.sample`.
+5. Start the server with `npm run dev`.
 
-For more detailed setup instructions or Auth0 configuration, feel free to reach out.
+For additional setup details or questions, feel free to [contact](mailto:support@climatescoop.app) or open an [issue](https://github.com/olicoding/ClimateScoop/issues).
 
 </details>
 
 ## Technologies Used
 
 - **Frontend**: React.js, Next.js, Sass.
-- **Backend**: Node.js, Express.js for Auth0 authentication.
+- **Backend**: Node.js, Express.js for Auth0 authentication, Redis for caching.
 - **Data Visualization**: Nivo for creating responsive charts.
+- **Logging and Monitoring**: Winston for error logging.
 - **Testing**: Jest for unit tests, Cypress for end-to-end tests.
+- **CI/CD Pipeline**: Employing GitHub Actions for automated testing and deployment pippeline.
 
 ## Testing
 
@@ -75,4 +81,4 @@ ClimateScoop is open source under the [MIT License](/LICENSE).
 
 ---
 
-ClimateScoop is committed to providing meaningful insights into climate change through innovative technology.
+ClimateScoop is committed to providing meaningful insights into climate change through innovative technology. Join us in exploring these insights and contribute to the global conversation on climate change.
