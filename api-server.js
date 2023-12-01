@@ -14,7 +14,7 @@ const issuerBaseUrl = process.env.AUTH0_ISSUER_BASE_URL;
 const audience = process.env.AUTH0_AUDIENCE;
 
 if (!baseUrl || !issuerBaseUrl || !audience) {
-  logger.error(`Missing a required environment variable`);
+  logger.error("Missing a required environment variable");
   process.exit(1);
 }
 

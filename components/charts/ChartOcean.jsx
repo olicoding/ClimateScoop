@@ -41,7 +41,7 @@ function ChartOcean({ oceanData, commonProps }) {
       <h2 className="chart-title">Ocean Warming ( °C )</h2>
 
       <ResponsiveLine
-        data={[{ id: "ocean-temperature", data: chartData }]}
+        data={[{ id: "ocean-temp", data: chartData }]}
         key="ocean-temperature-chart"
         xScale={{ type: "linear", min: "auto", max: 2030 }}
         yScale={{

@@ -11,7 +11,7 @@ const PageProfile = () => {
   if (!user) return <div>No user data available.</div>;
 
   return (
-    <section className="user-profile">
+    <section className="user-profile-section">
       <div className="profile-card">
         <div className="profile-picture">
           <Image
