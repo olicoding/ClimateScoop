@@ -47,3 +47,4 @@ yarn-error.log*
 
 # others
 yarn.lock
+pages/api/shows.js
