@@ -38,7 +38,7 @@ const ChartArctic = ({ arcticData, commonProps }) => {
     <div className="chart-container">
       <h2 className="chart-title">Melted Polar Ice ( million km² )</h2>
       <ResponsiveLine
-        data={[{ id: "Extent", data: chartData }]}
+        data={[{ id: "arctic-temp", data: chartData }]}
         key="arctic-temperature-chart"
         xScale={{ type: "linear", min: "auto", max: 2024 }}
         yScale={{ type: "linear", min: 0, max: 8 }}

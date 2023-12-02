@@ -14,7 +14,7 @@ const issuerBaseUrl = process.env.AUTH0_ISSUER_BASE_URL;
 const audience = process.env.AUTH0_AUDIENCE;
 
 if (!baseUrl || !issuerBaseUrl || !audience) {
-  logger.error(`Missing a required environment variable`);
+  logger.error("Missing a required environment variable");
   process.exit(1);
 }
 
@@ -44,11 +44,9 @@ const checkJwt = jwt({
   algorithms: ["RS256"],
 });
 
-app.get("/api/shows", checkJwt, (req, res) => {
-  logger.info("Access to /api/shows endpoint");
-  res.send({
-    msg: "Your access token was successfully validated!",
-  });
+app.get("/api/admin", checkJwt, (req, res) => {
+  logger.info("Admin route is secured...");
+  res.send("Admin route is secured");
 });
 
 app.use((err, req, res) => {
