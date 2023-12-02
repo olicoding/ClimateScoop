@@ -3,8 +3,11 @@ import { Context } from "../context/ContextProvider";
 import ChartGlobal from "./charts/ChartGlobal";
 import ChartOcean from "./charts/ChartOcean";
 import ChartArctic from "./charts/ChartArctic";
+import ChartEnergy from "./charts/ChartEnergy";
 
-function ChartsComponent({ data: { globalData, oceanData, arcticData } }) {
+function ChartsComponent({
+  data: { globalData, oceanData, arcticData, energyData },
+}) {
   const { chartsRef } = useContext(Context);
 
   const commonProps = {
@@ -23,7 +26,7 @@ function ChartsComponent({ data: { globalData, oceanData, arcticData } }) {
         ticks: {
           line: { strokeWidth: 0 },
           text: {
-            fontSize: "12px",
+            fontSize: "14px",
             textTransform: "uppercase",
             fill: "#f6fff8",
           },
@@ -37,6 +40,7 @@ function ChartsComponent({ data: { globalData, oceanData, arcticData } }) {
       <ChartGlobal globalData={globalData} commonProps={commonProps} />
       <ChartOcean oceanData={oceanData} commonProps={commonProps} />
       <ChartArctic arcticData={arcticData} commonProps={commonProps} />
+      <ChartEnergy energyData={energyData} commonProps={commonProps} />
     </div>
   );
 }
