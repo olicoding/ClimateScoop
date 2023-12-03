@@ -1,20 +1,13 @@
 describe("Chart Data Rendering", () => {
-  it("renders charts with mock data", () => {
-    cy.mockApiResponse(
-      "https://global-warming.org/api/temperature-api",
-      "apiMockData.json"
-    );
-    cy.mockApiResponse(
-      "https://global-warming.org/api/ocean-warming-api",
-      "apiMockData.json"
-    );
-    cy.mockApiResponse(
-      "https://global-warming.org/api/arctic-api",
-      "apiMockData.json"
-    );
-    cy.mockApiResponse("http://localhost:3000/api/data", "apiMockData.json");
+  beforeEach(() => {
+    cy.clearLocalStorage();
+    cy.clearCookies();
+  });
 
+  it("renders charts with actual data", () => {
     cy.visit("/");
+
+    cy.wait(10000);
 
     cy.get('[data-testid="global-chart"]').should("be.visible");
     cy.get('[data-testid="ocean-chart"]').should("be.visible");

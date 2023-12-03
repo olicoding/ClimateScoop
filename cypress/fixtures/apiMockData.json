@@ -1,6 +1,0 @@
-{
-  "globalData": ["Mock data for global warming API"],
-  "oceanData": ["Mock data for ocean warming API"],
-  "arcticData": ["Mock data for arctic API"],
-  "energyData": ["Mock data for your custom API"]
-}
