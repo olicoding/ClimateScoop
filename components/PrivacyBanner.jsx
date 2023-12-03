@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 function PrivacyBanner() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     const isAcknowledged = localStorage.getItem("privacyAcknowledged");
-    if (isAcknowledged) {
-      setIsVisible(false);
-    }
+    setIsVisible(!isAcknowledged);
+    setIsInitialized(true);
   }, []);
 
   const handleAcknowledge = () => {
@@ -15,7 +15,7 @@ function PrivacyBanner() {
     setIsVisible(false);
   };
 
-  if (!isVisible) return null;
+  if (!isInitialized || !isVisible) return null;
 
   return (
     <div className="privacy-banner" role="alert">
