@@ -5,7 +5,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: map-get($colors, ocean-green);
+  background-color: map-get($colors, deep-space);
   font-size: 0.9rem;
   text-align: center;
   padding: 4px 8px;
@@ -15,8 +15,8 @@
   justify-content: center;
 
   button {
-    background-color: map-get($colors, lighter-bg);
-    color: map-get($colors, pale-mint);
+    background-color: map-get($colors, frost-white);
+    color: map-get($colors, deep-space);
     letter-spacing: 1px;
     border: none;
     padding: 5px 14px;

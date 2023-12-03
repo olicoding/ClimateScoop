@@ -18,7 +18,7 @@ function PrivacyBanner() {
   if (!isVisible) return null;
 
   return (
-    <div className="privacy-banner">
+    <div className="privacy-banner" role="alert">
       <p>
         Your privacy matters. No personal data is collected, and no cookies
         stored. Only anonymized traffic via Vercel Analytics.
