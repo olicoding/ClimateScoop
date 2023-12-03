@@ -1,3 +1,3 @@
-// ***********************************************
-// https://on.cypress.io/custom-commands
-// ***********************************************
+Cypress.Commands.add("mockApiResponse", (url, fixture) => {
+  cy.intercept(url, { fixture });
+});

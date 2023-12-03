@@ -42,7 +42,7 @@ const ChartGlobal = ({ globalData, commonProps }) => {
   );
 
   return (
-    <div className="chart-container">
+    <div className="chart-container" data-testid="global-chart">
       <h2 className="chart-title">Global Warming ( °C )</h2>
       <ResponsiveLine
         data={[{ id: "global-temp", data: chartData }]}
