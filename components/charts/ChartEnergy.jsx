@@ -79,7 +79,7 @@ const ChartEnergy = ({ energyData }) => {
 
   return (
     <>
-      <div className="chart-container energy">
+      <div className="chart-container energy" data-testid="energy-chart">
         <h2 className="chart-title">Renewable Energy (GWh)</h2>
         <h2 className="chart-title">Production and Consumption </h2>
         <ResponsiveBar

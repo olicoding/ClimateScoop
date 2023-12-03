@@ -37,7 +37,7 @@ function ChartOcean({ oceanData, commonProps }) {
   );
 
   return (
-    <div className="chart-container">
+    <div className="chart-container" data-testid="ocean-chart">
       <h2 className="chart-title">Ocean Warming ( °C )</h2>
 
       <ResponsiveLine
