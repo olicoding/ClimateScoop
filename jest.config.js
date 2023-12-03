@@ -7,8 +7,8 @@ module.exports = {
       "<rootDir>/tests/styleMock.js",
   },
   moduleFileExtensions: ["js", "jsx"],
-  setupFiles: ["./tests/environment.js"],
-  setupFilesAfterEnv: ["./tests/setup.jsx"],
+  setupFiles: ["<rootDir>/tests/environment.js"],
+  setupFilesAfterEnv: ["<rootDir>/tests/setup.jsx"],
   collectCoverageFrom: ["components/**/*.{js,jsx}", "pages/**/*.{js,jsx}"],
   coverageReporters: ["lcov", "text", "text-summary"],
   transform: {

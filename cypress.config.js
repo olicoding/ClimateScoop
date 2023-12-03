@@ -1,23 +1,23 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  chromeWebSecurity: false,
-  viewportWidth: 1000,
-  viewportHeight: 1000,
-  reporter: "junit",
-  video: true,
-  videosFolder: "cypress/videos",
-  fixturesFolder: "cypress/fixtures",
-  screenshotsFolder: "cypress/screenshots",
-  reporterOptions: {
-    mochaFile: "test-results/cypress/junit-[hash].xml",
-  },
-  retries: {
-    runMode: 3,
-  },
   e2e: {
     setupNodeEvents(on, config) {},
     baseUrl: "http://localhost:3000",
     specPattern: "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
+  },
+  viewportWidth: 1000,
+  viewportHeight: 1000,
+  video: true,
+  videosFolder: "cypress/videos",
+  screenshotsFolder: "cypress/screenshots",
+  fixturesFolder: "cypress/fixtures",
+  chromeWebSecurity: false,
+  reporterOptions: {
+    mochaFile: "cypress/test-results/junit-[hash].xml",
+  },
+  retries: {
+    runMode: 2,
+    openMode: 0,
   },
 });

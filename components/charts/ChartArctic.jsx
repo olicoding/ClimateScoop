@@ -35,7 +35,7 @@ const ChartArctic = ({ arcticData, commonProps }) => {
   );
 
   return (
-    <div className="chart-container">
+    <div className="chart-container" data-testid="arctic-chart">
       <h2 className="chart-title">Melted Polar Ice ( million km² )</h2>
       <ResponsiveLine
         data={[{ id: "arctic-temp", data: chartData }]}
