@@ -30,7 +30,14 @@ export default async function handler(req, res) {
 
     res.status(200).json({ mainData });
   } catch (error) {
-    logger.error(`Error: ${error.stack || error.message}`);
+    logger.error({
+      message: `Error in API request: ${error.stack || error.message}`,
+      request: {
+        method: req.method,
+        url: req.originalUrl,
+        headers: req.headers,
+      },
+    });
     res.status(500).json({ error: "Internal Server Error" });
   }
 }

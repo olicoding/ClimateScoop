@@ -18,17 +18,6 @@ if (!baseUrl || !issuerBaseUrl || !audience) {
   process.exit(1);
 }
 
-app.use((req, res, next) => {
-  res.on("finish", () => {
-    logger.info(
-      `${req.method} ${req.originalUrl} - ${res.statusCode}; ${
-        res.get("Content-Length") || 0
-      }b sent`
-    );
-  });
-  next();
-});
-
 app.use(helmet());
 app.use(cors({ origin: baseUrl }));
 
@@ -44,13 +33,35 @@ const checkJwt = jwt({
   algorithms: ["RS256"],
 });
 
+app.use((req, res, next) => {
+  res.on("finish", () => {
+    logger.info({
+      message: `${req.method} ${req.originalUrl} - ${res.statusCode}; ${
+        res.get("Content-Length") || 0
+      }b sent`,
+    });
+  });
+  next();
+});
+
 app.get("/api/admin", checkJwt, (req, res) => {
   logger.info("Admin route is secured...");
   res.send("Admin route is secured");
 });
 
 app.use((err, req, res) => {
-  logger.error(`Error: ${err.stack || err.message}`);
+  if (err.name === "UnauthorizedError") {
+    logger.warn(`Unauthorized access attempt: ${err.message}`);
+  } else {
+    logger.error({
+      message: `Error: ${err.stack || err.message}`,
+      request: {
+        method: req.method,
+        url: req.originalUrl,
+        headers: req.headers,
+      },
+    });
+  }
   res.status(500).send("Internal Server Error");
 });
 
