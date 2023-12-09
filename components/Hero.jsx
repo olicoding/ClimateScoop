@@ -5,9 +5,9 @@ import useScrollDirection from "../hooks/useScrollDirection";
 import downArrow from "../public/down-arrow.svg";
 import Loading from "./Loading";
 
-const Hero = ({ username }) => {
+const Hero = () => {
   const { isTop } = useScrollDirection();
-  const { chartsRef, user, isLoading } = useContext(Context);
+  const { chartsRef, user, username, isLoading } = useContext(Context);
   const imgSrc = downArrow;
 
   if (isLoading) return <Loading />;

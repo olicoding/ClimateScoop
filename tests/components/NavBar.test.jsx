@@ -11,6 +11,7 @@ describe("NavBar", () => {
   it("When user is not authenticated, renders login but not profile nav link", async () => {
     await act(async () => {
       await useUser.mockReturnValue({ user: null, isLoading: false });
+
       render(
         <UserProvider>
           <NavBar />

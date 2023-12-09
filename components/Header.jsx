@@ -7,15 +7,20 @@ const Header = () => {
   const [hideHeader, setHideHeader] = useState(false);
 
   useEffect(() => {
-    if (scrollDirection === "down" && !isTop) {
+    if (isTop) {
+      setHideHeader(false);
+    } else if (scrollDirection === "down") {
       setHideHeader(true);
-    } else if (scrollDirection === "up" || isTop) {
+    } else if (scrollDirection === "up") {
       setHideHeader(false);
     }
-  }, [scrollDirection]);
+  }, [scrollDirection, isTop]);
 
   return (
-    <header className={`header ${hideHeader ? "hide" : ""}`}>
+    <header
+      className={`header ${hideHeader ? "hide" : ""}`}
+      data-testid="header"
+    >
       <NavBar />
     </header>
   );
