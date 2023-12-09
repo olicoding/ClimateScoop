@@ -12,7 +12,7 @@ const Header = () => {
     } else if (scrollDirection === "up" || isTop) {
       setHideHeader(false);
     }
-  }, [scrollDirection, isTop]);
+  }, [scrollDirection]);
 
   return (
     <header className={`header ${hideHeader ? "hide" : ""}`}>

@@ -11,6 +11,7 @@ const useScrollDirection = () => {
       const currentScrollY = window.scrollY;
 
       setIsTop(currentScrollY === 0);
+
       if (currentScrollY > lastScrollY) {
         setScrollDirection("down");
       } else if (currentScrollY < lastScrollY) {
@@ -22,7 +23,7 @@ const useScrollDirection = () => {
 
     window.addEventListener("scroll", updateScrollDirection, { passive: true });
     return () => window.removeEventListener("scroll", updateScrollDirection);
-  }, [isTop]);
+  }, []);
 
   return { scrollDirection, isTop };
 };
