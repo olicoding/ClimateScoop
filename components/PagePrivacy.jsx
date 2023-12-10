@@ -42,9 +42,12 @@ const PagePrivacy = () => (
 
       <h2>Cookies and Tracking</h2>
       <p>
-        ClimateScoop does not use cookies or any tracking mechanisms that
-        collect personal data. Our visitor analytics strictly involve aggregate,
-        non-personally identifiable information.
+        If you create an account, ClimateScoop uses cookies for authentication,
+        provided by Auth0. We also use basic Vercel Analytics, and store a
+        confirmation token in your local storage to remember your acknowledgment
+        of the privacy banner, and dont show you everytime you visit again. We
+        don&apos;t use cookies or tracking mechanisms to collect personal data
+        beyond that.
       </p>
 
       <h2>User Rights</h2>

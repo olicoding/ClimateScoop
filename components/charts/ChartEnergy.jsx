@@ -58,6 +58,7 @@ const ChartEnergy = ({ energyData }) => {
 
     return (
       <div
+        data-testid="energy-chart-tooltip"
         style={{
           background: "white",
           padding: "5px 9px",
@@ -115,7 +116,9 @@ const ChartEnergy = ({ energyData }) => {
         This chart displays a cumulative sum of renewable energy production and
         consumption for each country, spanning from 1997 to 2016. Data for China
         and India are capped at ~20M GWh for visualization purposes.{" "}
-        <cite className="cite">Data source: The World Bank.</cite>
+        <cite className="cite">
+          Data source: Sustainable Energy for All database, The World Bank
+        </cite>
       </div>
     </>
   );

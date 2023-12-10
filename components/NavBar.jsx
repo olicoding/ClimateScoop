@@ -7,7 +7,7 @@ const NavBar = () => {
   if (isLoading) return null;
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" data-testid="navbar">
       <ul className="nav-list">
         <li>
           <Link href="/" data-testid="home-link">

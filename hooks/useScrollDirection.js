@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 const useScrollDirection = () => {
-  const [scrollDirection, setScrollDirection] = useState(null);
-  const [isTop, setIsTop] = useState(true);
+  const [currentScrollDirection, setCurrentScrollDirection] = useState(null);
+  const [isAtPageTop, setIsAtPageTop] = useState(true);
 
   useEffect(() => {
     let lastScrollY = 0;
@@ -10,11 +10,12 @@ const useScrollDirection = () => {
     const updateScrollDirection = () => {
       const currentScrollY = window.scrollY;
 
-      setIsTop(currentScrollY === 0);
+      setIsAtPageTop(currentScrollY === 0);
+
       if (currentScrollY > lastScrollY) {
-        setScrollDirection("down");
+        setCurrentScrollDirection("down");
       } else if (currentScrollY < lastScrollY) {
-        setScrollDirection("up");
+        setCurrentScrollDirection("up");
       }
 
       lastScrollY = currentScrollY;
@@ -22,9 +23,9 @@ const useScrollDirection = () => {
 
     window.addEventListener("scroll", updateScrollDirection, { passive: true });
     return () => window.removeEventListener("scroll", updateScrollDirection);
-  }, [isTop]);
+  }, []);
 
-  return { scrollDirection, isTop };
+  return { currentScrollDirection, isAtPageTop };
 };
 
 export default useScrollDirection;

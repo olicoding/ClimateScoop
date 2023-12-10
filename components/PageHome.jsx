@@ -13,10 +13,10 @@ const PageHome = ({ chartsData }) => {
 
   return (
     <>
-      <section className="hero">
+      <section className="hero" data-testid="hero-section">
         <Hero username={username} />
       </section>
-      <section className="charts-section">
+      <section className="charts-section" data-testid="charts-section">
         {chartsData ? <ChartsComponent data={chartsData} /> : <Loading />}
       </section>
     </>

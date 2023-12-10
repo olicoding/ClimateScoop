@@ -8,6 +8,8 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
+  logger.debug("Starting data fetching process...");
+
   try {
     const apiDataMappings = [
       {
@@ -43,6 +45,8 @@ export async function getStaticProps() {
     );
 
     const results = await Promise.allSettled(apiDataPromises);
+
+    logger.debug("All data fetching operations completed.");
 
     const props = apiDataMappings.reduce((acc, { key, dataPath }, index) => {
       const result = results[index];
