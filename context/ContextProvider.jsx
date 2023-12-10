@@ -1,11 +1,13 @@
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { createContext, useRef, useMemo } from "react";
+import useScrollDirection from "../hooks/useScrollDirection";
 
 export const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
   const { user, isLoading } = useUser();
   const chartsRef = useRef(null);
+  const { currentScrollDirection, isAtPageTop } = useScrollDirection();
 
   const username = useMemo(() => {
     if (isLoading) return null;
@@ -18,12 +20,14 @@ export const ContextProvider = ({ children }) => {
 
   const contextValue = useMemo(
     () => ({
+      currentScrollDirection,
       chartsRef,
+      isAtPageTop,
       user,
       username,
       isLoading,
     }),
-    [chartsRef, user, username, isLoading]
+    [chartsRef, currentScrollDirection, isAtPageTop, user, username, isLoading]
   );
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;

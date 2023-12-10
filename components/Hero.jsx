@@ -1,28 +1,12 @@
-import Image from "next/image";
 import { useContext } from "react";
 import { Context } from "../context/ContextProvider";
-import useScrollDirection from "../hooks/useScrollDirection";
-import downArrow from "../public/down-arrow.svg";
 import Loading from "./Loading";
+import ScrollButton from "./ScrollButton";
 
 const Hero = () => {
-  const { isTop } = useScrollDirection();
-  const { chartsRef, user, username, isLoading } = useContext(Context);
-  const imgSrc = downArrow;
+  const { isAtPageTop, user, username, isLoading } = useContext(Context);
 
   if (isLoading) return <Loading />;
-
-  const scrollToCharts = () => {
-    if (chartsRef.current) {
-      chartsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      scrollToCharts();
-    }
-  };
 
   return (
     <>
@@ -32,17 +16,8 @@ const Hero = () => {
           {user ? `Welcome ${username}` : "Visual Insights on Climate Change"}
         </p>
       </div>
-      {isTop ? (
-        <div
-          className="arrow-container"
-          onClick={scrollToCharts}
-          onKeyDown={handleKeyPress}
-          role="button"
-          tabIndex="0"
-        >
-          <Image src={imgSrc} alt="Scroll Down" width={64} height={64} />
-        </div>
-      ) : null}
+
+      {isAtPageTop ? <ScrollButton direction="down" /> : null}
     </>
   );
 };

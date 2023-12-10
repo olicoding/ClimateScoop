@@ -4,6 +4,7 @@ import ChartGlobal from "./charts/ChartGlobal";
 import ChartOcean from "./charts/ChartOcean";
 import ChartArctic from "./charts/ChartArctic";
 import ChartEnergy from "./charts/ChartEnergy";
+import ScrollButton from "./ScrollButton";
 
 function ChartsComponent({
   data: { globalData, oceanData, arcticData, energyData },
@@ -36,12 +37,16 @@ function ChartsComponent({
   };
 
   return (
-    <div className="charts-container" ref={chartsRef}>
-      <ChartGlobal globalData={globalData} commonProps={commonProps} />
-      <ChartOcean oceanData={oceanData} commonProps={commonProps} />
-      <ChartArctic arcticData={arcticData} commonProps={commonProps} />
-      <ChartEnergy energyData={energyData} commonProps={commonProps} />
-    </div>
+    <>
+      <div className="charts-container" ref={chartsRef}>
+        <ChartGlobal globalData={globalData} commonProps={commonProps} />
+        <ChartOcean oceanData={oceanData} commonProps={commonProps} />
+        <ChartArctic arcticData={arcticData} commonProps={commonProps} />
+        <ChartEnergy energyData={energyData} />
+      </div>
+
+      <ScrollButton direction="top" />
+    </>
   );
 }
 

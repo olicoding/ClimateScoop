@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "../context/ContextProvider";
 import NavBar from "./NavBar";
-import useScrollDirection from "../hooks/useScrollDirection";
 
 const Header = () => {
-  const { scrollDirection, isTop } = useScrollDirection();
+  const { currentScrollDirection, isAtPageTop } = useContext(Context);
   const [hideHeader, setHideHeader] = useState(false);
 
   useEffect(() => {
-    if (isTop) {
+    if (isAtPageTop) {
       setHideHeader(false);
-    } else if (scrollDirection === "down") {
+    } else if (currentScrollDirection === "down") {
       setHideHeader(true);
-    } else if (scrollDirection === "up") {
+    } else if (currentScrollDirection === "up") {
       setHideHeader(false);
     }
-  }, [scrollDirection, isTop]);
+  }, [currentScrollDirection, isAtPageTop]);
 
   return (
     <header
