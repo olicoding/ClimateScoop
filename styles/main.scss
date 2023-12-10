@@ -8,6 +8,7 @@
 @import "components/hero";
 @import "components/charts";
 @import "components/loading";
+@import "components/scroll-button";
 
 @import "layout/layout";
 @import "layout/header";
@@ -15,6 +16,5 @@
 @import "layout/privacy-banner";
 @import "layout/footer";
 
-@import "pages/home";
 @import "pages/profile";
 @import "pages/tos-privacy";

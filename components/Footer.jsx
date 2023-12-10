@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const Footer = () => (
-  <footer className="footer" id="footer">
+  <footer className="footer" id="footer" data-testid="footer">
     <nav>
       <ul className="footer-list">
         <li>

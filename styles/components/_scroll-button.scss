@@ -1,0 +1,38 @@
+.scroll-button {
+  opacity: 0;
+  @include fadeInAnimation;
+  @include pulsateAnimation;
+  margin: 0 auto;
+  scale: 0.8;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &.down {
+    position: absolute;
+    bottom: 50px;
+  }
+
+  &.top {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      transform: rotate(180deg);
+    }
+  }
+
+  @media (max-width: 475px) {
+    &.down {
+      bottom: 10px;
+    }
+  }
+
+  @media (max-height: 500px) {
+    &.down {
+      bottom: -5px;
+      scale: 0.6;
+    }
+  }
+}

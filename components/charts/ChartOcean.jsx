@@ -21,6 +21,7 @@ function ChartOcean({ oceanData, commonProps }) {
 
   const customTooltip = ({ slice }) => (
     <div
+      data-testid="ocean-chart-tooltip"
       style={{
         background: "white",
         padding: "9px",
@@ -37,26 +38,34 @@ function ChartOcean({ oceanData, commonProps }) {
   );
 
   return (
-    <div className="chart-container" data-testid="ocean-chart">
-      <h2 className="chart-title">Ocean Warming ( °C )</h2>
+    <>
+      <div className="chart-container" data-testid="ocean-chart">
+        <h2 className="chart-title">Ocean Warming ( °C )</h2>
 
-      <ResponsiveLine
-        data={[{ id: "ocean-temp", data: chartData }]}
-        key="ocean-temperature-chart"
-        xScale={{ type: "linear", min: "auto", max: 2030 }}
-        yScale={{
-          type: "linear",
-          min: "auto",
-          max: 0.8,
-        }}
-        gridYValues={7}
-        axisLeft={{
-          tickValues: temperatureTicks.slice(1),
-        }}
-        sliceTooltip={customTooltip}
-        {...commonProps}
-      />
-    </div>
+        <ResponsiveLine
+          data={[{ id: "ocean-temp", data: chartData }]}
+          key="ocean-temperature-chart"
+          xScale={{ type: "linear", min: "auto", max: 2030 }}
+          yScale={{
+            type: "linear",
+            min: "auto",
+            max: 0.8,
+          }}
+          gridYValues={7}
+          axisLeft={{
+            tickValues: temperatureTicks.slice(1),
+          }}
+          sliceTooltip={customTooltip}
+          {...commonProps}
+        />
+      </div>
+      <div className="chart-citations">
+        <cite className="cite">
+          Data source: Extended Reconstructed Sea Surface Temperature (ERSST)
+          Data, Global-Warming.org
+        </cite>
+      </div>
+    </>
   );
 }
 

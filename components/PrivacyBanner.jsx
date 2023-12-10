@@ -20,8 +20,8 @@ function PrivacyBanner() {
   return (
     <div className="privacy-banner" role="alert">
       <p>
-        Your privacy matters. No personal data is collected, and no cookies
-        stored. Only anonymized traffic via Vercel Analytics.
+        We use cookies for authentication and basic analytics. By continuing,
+        you agree.
       </p>
       <button onClick={handleAcknowledge} type="button">
         okay!
