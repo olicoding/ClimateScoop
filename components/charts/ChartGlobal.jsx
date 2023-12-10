@@ -43,21 +43,29 @@ const ChartGlobal = ({ globalData, commonProps }) => {
   );
 
   return (
-    <div className="chart-container" data-testid="global-chart">
-      <h2 className="chart-title">Global Warming ( °C )</h2>
-      <ResponsiveLine
-        data={[{ id: "global-temp", data: chartData }]}
-        key="global-temperature-chart"
-        xScale={{ type: "linear", min: "auto", max: 2030 }}
-        yScale={{ type: "linear", min: "auto", max: 1.5 }}
-        gridYValues={5}
-        axisLeft={{
-          tickValues: [-0.5, 0, 0.5, 1, 1.5],
-        }}
-        sliceTooltip={customTooltip}
-        {...commonProps}
-      />
-    </div>
+    <>
+      <div className="chart-container" data-testid="global-chart">
+        <h2 className="chart-title">Global Warming ( °C )</h2>
+        <ResponsiveLine
+          data={[{ id: "global-temp", data: chartData }]}
+          key="global-temperature-chart"
+          xScale={{ type: "linear", min: "auto", max: 2030 }}
+          yScale={{ type: "linear", min: "auto", max: 1.5 }}
+          gridYValues={5}
+          axisLeft={{
+            tickValues: [-0.5, 0, 0.5, 1, 1.5],
+          }}
+          sliceTooltip={customTooltip}
+          {...commonProps}
+        />
+      </div>
+      <div className="chart-citations">
+        <cite className="cite">
+          Data source: Global Mean Surface Temperature Anomaly Data,
+          Global-Warming.org
+        </cite>
+      </div>
+    </>
   );
 };
 
