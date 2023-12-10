@@ -26,6 +26,7 @@ const ChartGlobal = ({ globalData, commonProps }) => {
 
   const customTooltip = ({ slice }) => (
     <div
+      data-testid="global-chart-tooltip"
       style={{
         color: "#00918E",
         background: "white",

@@ -58,6 +58,7 @@ const ChartEnergy = ({ energyData }) => {
 
     return (
       <div
+        data-testid="energy-chart-tooltip"
         style={{
           background: "white",
           padding: "5px 9px",

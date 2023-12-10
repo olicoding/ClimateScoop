@@ -21,6 +21,7 @@ function ChartOcean({ oceanData, commonProps }) {
 
   const customTooltip = ({ slice }) => (
     <div
+      data-testid="ocean-chart-tooltip"
       style={{
         background: "white",
         padding: "9px",

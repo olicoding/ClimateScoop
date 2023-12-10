@@ -19,6 +19,7 @@ const ChartArctic = ({ arcticData, commonProps }) => {
 
   const customTooltip = ({ slice }) => (
     <div
+      data-testid="arctic-chart-tooltip"
       style={{
         background: "white",
         padding: "9px",
