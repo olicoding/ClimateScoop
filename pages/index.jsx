@@ -2,9 +2,19 @@ import axios from "axios";
 import { getCachedData } from "../lib/redis";
 import logger from "../lib/winston";
 import PageHome from "../components/PageHome";
+import Head from "next/head";
 
 export default function Home(props) {
-  return <PageHome chartsData={props} />;
+  return (
+    <>
+      <Head>
+        <meta name="description" content="Visual Insights on Climate Change" />
+        <link rel="canonical" href="https://climatescoop.app" />
+        <title>ClimateScoop</title>
+      </Head>
+      <PageHome chartsData={props} />
+    </>
+  );
 }
 
 export async function getStaticProps() {
