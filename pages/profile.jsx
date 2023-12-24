@@ -1,6 +1,6 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import PageProfile from "../components/PageProfile";
 import Head from "next/head";
+import PageProfile from "../components/PageProfile";
 
 export default function Profile() {
   return (

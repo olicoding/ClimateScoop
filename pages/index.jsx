@@ -1,8 +1,14 @@
 import axios from "axios";
+import Head from "next/head";
 import { getCachedData } from "../lib/redis";
 import logger from "../lib/winston";
 import PageHome from "../components/PageHome";
-import Head from "next/head";
+
+async function fetchDataFromCache(url) {
+  if (typeof caches === "undefined") return null;
+  const response = await caches.match(url);
+  return response ? response.json() : null;
+}
 
 export default function Home(props) {
   return (
@@ -47,8 +53,17 @@ export async function getStaticProps() {
     const fetchApiData = (url) =>
       axios.get(url, { timeout: 5000 }).then((res) => res.data);
 
-    const fetchAndCacheData = async (key, url) =>
-      getCachedData(key, () => fetchApiData(url), 30 * 24 * 60 * 60);
+    const fetchAndCacheData = async (key, url) => {
+      let data = await fetchDataFromCache(url);
+      if (!data) {
+        data = await getCachedData(
+          key,
+          () => fetchApiData(url),
+          30 * 24 * 60 * 60
+        );
+      }
+      return data;
+    };
 
     const apiDataPromises = apiDataMappings.map(({ url, key }) =>
       fetchAndCacheData(key, url)
@@ -73,7 +88,7 @@ export async function getStaticProps() {
 
     return {
       props,
-      revalidate: 86400,
+      revalidate: 600,
     };
   } catch (error) {
     logger.error(`Error in getStaticProps: ${error.message}`);

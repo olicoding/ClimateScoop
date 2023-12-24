@@ -1,5 +1,5 @@
-import PagePrivacy from "../components/PagePrivacy";
 import Head from "next/head";
+import PagePrivacy from "../components/PagePrivacy";
 
 export default function Privacy() {
   return (
