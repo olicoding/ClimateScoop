@@ -1,99 +1,73 @@
-import { skipWaiting, clientsClaim } from "workbox-core";
-import { ExpirationPlugin } from "workbox-expiration";
-import {
-  NetworkOnly,
-  NetworkFirst,
-  CacheFirst,
-  StaleWhileRevalidate,
-} from "workbox-strategies";
-import { registerRoute, Route } from "workbox-routing";
-import {
-  precacheAndRoute,
-  PrecacheFallbackPlugin,
-  cleanupOutdatedCaches,
-} from "workbox-precaching";
+/* eslint-disable no-restricted-globals */
 
-const currentCacheVersion = "v1";
+import { clientsClaim } from "workbox-core";
+import { cleanupOutdatedCaches } from "workbox-precaching";
 
-const installEvent = () => {
-  self.addEventListener("install", () => {
-    console.log("service worker installed");
-  });
-};
+const currentCacheVersion = "cache-v1";
 
-installEvent();
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches
+      .open(currentCacheVersion)
+      .then((cache) => cache.add("/_offline"))
+      .catch(() => {})
+  );
 
-const activateEvent = () => {
-  self.addEventListener("activate", () => {
-    console.log("service worker activated");
-  });
-};
+  self.skipWaiting();
+});
 
-activateEvent();
-
-const cacheName = "test-cache-v1";
-
-const cacheClone = async (e) => {
-  const res = await fetch(e.request);
-  const resClone = res.clone();
-
-  const cache = await caches.open(cacheName);
-  await cache.put(e.request, resClone);
-  return res;
-};
-
-const fetchEvent = () => {
-  self.addEventListener("fetch", (e) => {
-    e.respondWith(
-      cacheClone(e)
-        .catch(() => caches.match(e.request))
-        .then((res) => res)
-    );
-  });
-};
-fetchEvent();
-
-// Offline Fallback for navigation requests
-navigationPreload.enable();
-const networkOnlyNavigationRoute = new Route(
-  ({ request }) => request.mode === "navigate",
-  new NetworkOnly({
-    plugins: [
-      new PrecacheFallbackPlugin({
-        fallbackURL: "/_offline",
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    Promise.all([
+      // Clean old caches
+      caches.keys().then((cacheNames) => {
+        cacheNames.forEach((cacheName) => {
+          if (cacheName !== currentCacheVersion) {
+            caches.delete(cacheName);
+          }
+        });
       }),
-    ],
-  })
-);
 
-registerRoute(networkOnlyNavigationRoute);
+      // Enable navigation preload if supported
+      self.navigationPreload && self.navigationPreload.enable(),
+    ])
+  );
 
-precacheAndRoute(
-  self.__WB_MANIFEST.concat([{ url: "/_offline", revision: null }])
-);
+  clientsClaim();
+});
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      // If a cache is present, return the cached response
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      // Else, try fetching from the network
+      return fetch(event.request)
+        .then((response) => {
+          if (
+            !response ||
+            response.status !== 200 ||
+            response.type !== "basic"
+          ) {
+            return response;
+          }
+
+          // Cache the fetched response
+          const responseToCache = response.clone();
+          caches.open(currentCacheVersion).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+
+          return response;
+        })
+        .catch(
+          () => caches.match("/_offline") // If both cache and network are unavailable, show the offline page
+        );
+    })
+  );
+});
 
 cleanupOutdatedCaches();
-skipWaiting();
-clientsClaim();
-
-// Cache static assets
-registerRoute(
-  /\.(?:png|jpg|jpeg|svg|gif)$/,
-  new CacheFirst({ cacheName: `image-cache-${currentCacheVersion}` }),
-  "GET"
-);
-registerRoute(
-  /\.(?:css|js|woff|woff2|eot|ttf|otf)$/i,
-  new StaleWhileRevalidate({
-    cacheName: `static-resources-${currentCacheVersion}`,
-  })
-);
-registerRoute(
-  /\/api\/.*/,
-  new NetworkFirst({
-    cacheName: `api-cache-${currentCacheVersion}`,
-    plugins: [
-      new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 24 * 60 * 60 }),
-    ],
-  })
-);

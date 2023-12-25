@@ -34,13 +34,6 @@ const withPWA = require("next-pwa")({
         },
       },
     },
-    {
-      urlPattern: new RegExp("^https://climatescoop.app/"),
-      handler: "NetworkFirst",
-      options: {
-        cacheName: "html-cache",
-      },
-    },
   ],
 });
 

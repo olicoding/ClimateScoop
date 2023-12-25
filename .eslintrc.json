@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "serviceworker": true
   },
   "settings": {
     "react": {
@@ -33,5 +34,13 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "import/no-unresolved": ["error", { "ignore": ["@vercel/analytics/react"] }]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["worker/index.js"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    }
+  ]
 }
