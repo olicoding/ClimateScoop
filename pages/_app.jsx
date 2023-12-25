@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { Analytics } from "@vercel/analytics/react";
@@ -7,6 +7,16 @@ import Layout from "../components/Layout";
 import "../styles/main.scss";
 
 export default function App({ Component, pageProps }) {
+  useEffect(() => {
+    const registerServiceWorker = async () => {
+      if ("serviceWorker" in navigator) {
+        await navigator.serviceWorker.register("/sw.js");
+      }
+    };
+
+    registerServiceWorker();
+  }, []);
+
   return (
     <UserProvider>
       <ContextProvider>

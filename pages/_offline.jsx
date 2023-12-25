@@ -1,4 +1,4 @@
-export default function Fallback() {
+export default function Offline() {
   return (
     <div>
       you are offline at the moment, this service will be available once you
