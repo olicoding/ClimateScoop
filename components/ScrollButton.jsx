@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useContext } from "react";
 import { Context } from "../context/ContextProvider";
-import arrow from "../public/down-arrow.svg";
+import arrow from "../public/media/arrow.svg";
 
 const ScrollButton = ({ direction }) => {
   const { chartsRef, isAtPageTop } = useContext(Context);

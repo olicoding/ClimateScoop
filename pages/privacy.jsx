@@ -1,5 +1,15 @@
+import Head from "next/head";
 import PagePrivacy from "../components/PagePrivacy";
 
 export default function Privacy() {
-  return <PagePrivacy />;
+  return (
+    <>
+      <Head>
+        <meta name="description" content="ClimateScoop Privacy Policy." />
+        <link rel="canonical" href="https://climatescoop.app/privacy" />
+        <title>ClimateScoop | Privacy</title>
+      </Head>
+      <PagePrivacy />
+    </>
+  );
 }

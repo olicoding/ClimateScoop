@@ -1,23 +1,8 @@
 import { ResponsiveLine } from "@nivo/line";
 import Loading from "../Loading";
 
-function ChartOcean({ oceanData, commonProps }) {
-  if (!oceanData) return <Loading />;
-
-  const chartData = Object.entries(oceanData)
-    .sort(([yearA], [yearB]) => yearA - yearB)
-    .map(([year, temperature]) => ({
-      x: year,
-      y: parseFloat(temperature),
-    }));
-
-  const yValues = chartData.map((d) => parseFloat(d.y));
-  const minY = Math.floor(Math.min(...yValues) / 0.2) * 0.2;
-  const maxY = Math.ceil(Math.max(...yValues) / 0.2) * 0.2;
-  const temperatureTicks = [];
-  for (let i = minY; i <= maxY; i += 0.2) {
-    temperatureTicks.push(Number(i.toFixed(1)));
-  }
+function ChartOcean({ oceanProcessedData, commonProps }) {
+  if (!oceanProcessedData) return <Loading />;
 
   const customTooltip = ({ slice }) => (
     <div
@@ -43,7 +28,7 @@ function ChartOcean({ oceanData, commonProps }) {
         <h2 className="chart-title">Ocean Warming ( °C )</h2>
 
         <ResponsiveLine
-          data={[{ id: "ocean-temp", data: chartData }]}
+          data={[{ id: "ocean-temp", data: oceanProcessedData }]}
           key="ocean-temperature-chart"
           xScale={{ type: "linear", min: "auto", max: 2030 }}
           yScale={{
@@ -53,7 +38,7 @@ function ChartOcean({ oceanData, commonProps }) {
           }}
           gridYValues={7}
           axisLeft={{
-            tickValues: temperatureTicks.slice(1),
+            tickValues: [-0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8],
           }}
           sliceTooltip={customTooltip}
           {...commonProps}
