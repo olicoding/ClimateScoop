@@ -1,28 +1,8 @@
 import { ResponsiveLine } from "@nivo/line";
 import Loading from "../Loading";
 
-const ChartGlobal = ({ globalData, commonProps }) => {
-  if (!globalData) return <Loading />;
-
-  const aggregatedData = globalData.reduce((acc, { time, station }) => {
-    const year = time.split(".")[0];
-    if (!acc[year]) {
-      acc[year] = { min: station, max: station };
-    } else {
-      acc[year].min = Math.min(acc[year].min, station);
-      acc[year].max = Math.max(acc[year].max, station);
-    }
-    return acc;
-  }, {});
-
-  const chartData = Object.entries(aggregatedData).map(
-    ([year, { min, max }]) => ({
-      x: year,
-      y: (min + max) / 2,
-      min,
-      max,
-    })
-  );
+const ChartGlobal = ({ globalProcessedData, commonProps }) => {
+  if (!globalProcessedData) return <Loading />;
 
   const customTooltip = ({ slice }) => (
     <div
@@ -47,7 +27,7 @@ const ChartGlobal = ({ globalData, commonProps }) => {
       <div className="chart-container" data-testid="global-chart">
         <h2 className="chart-title">Global Warming ( °C )</h2>
         <ResponsiveLine
-          data={[{ id: "global-temp", data: chartData }]}
+          data={[{ id: "global-temp", data: globalProcessedData }]}
           key="global-temperature-chart"
           xScale={{ type: "linear", min: "auto", max: 2030 }}
           yScale={{ type: "linear", min: "auto", max: 1.5 }}

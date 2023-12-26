@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useContext } from "react";
 import { Context } from "../context/ContextProvider";
-import userImage from "../public/user.png";
+import userImage from "../public/media/user.png";
 import Loading from "./Loading";
 
 const PageProfile = () => {

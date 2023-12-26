@@ -1,4 +1,5 @@
-.hero {
+.hero,
+.offline {
   @include flex-center;
   flex-direction: column;
   min-height: 100vh;
@@ -7,7 +8,8 @@
   position: relative;
   z-index: 1;
 
-  .hero-content {
+  .hero-content,
+  .offline-content {
     opacity: 0;
     @include fadeInAnimation;
     text-align: center;
