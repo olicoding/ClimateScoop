@@ -21,13 +21,12 @@ export const ContextProvider = ({ children }) => {
   const contextValue = useMemo(
     () => ({
       currentScrollDirection,
-      chartsRef,
       isAtPageTop,
-      user,
-      username,
       isLoading,
+      chartsRef,
+      username,
     }),
-    [chartsRef, currentScrollDirection, isAtPageTop, user, username, isLoading]
+    [currentScrollDirection, isAtPageTop, isLoading, chartsRef, username]
   );
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
