@@ -4,11 +4,6 @@ import Loading from "../Loading";
 const ChartArctic = ({ arcticData, commonProps }) => {
   if (!arcticData) return <Loading />;
 
-  const chartData = arcticData.map(({ year, extent }) => ({
-    x: year,
-    y: extent,
-  }));
-
   const extents = arcticData.map((item) => item.extent);
   const minExtent = Math.floor(Math.min(...extents));
   const maxExtent = Math.ceil(Math.max(...extents));
@@ -40,7 +35,7 @@ const ChartArctic = ({ arcticData, commonProps }) => {
       <div className="chart-container" data-testid="arctic-chart">
         <h2 className="chart-title">Melted Polar Ice ( million km² )</h2>
         <ResponsiveLine
-          data={[{ id: "arctic-temp", data: chartData }]}
+          data={[{ id: "arctic-temp", data: arcticData }]}
           key="arctic-temperature-chart"
           xScale={{ type: "linear", min: "auto", max: 2024 }}
           yScale={{ type: "linear", min: 0, max: 8 }}
