@@ -3,6 +3,9 @@ import Head from "next/head";
 import { getCachedData } from "../lib/redis";
 import logger from "../lib/winston";
 import PageHome from "../components/PageHome";
+import processArcticData from "../utils/processArcticData";
+import processGlobalData from "../utils/processGlobalData";
+import processOceanData from "../utils/processOceanData";
 
 async function fetchDataFromCache(url) {
   if (typeof caches === "undefined") return null;
@@ -24,61 +27,57 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  logger.debug("Starting data fetching process...");
-
   try {
     const apiDataMappings = [
       {
         url: "https://global-warming.org/api/temperature-api",
-        key: "globalData",
-        dataPath: "result",
+        key: "globalProcessedData",
+        processor: processGlobalData,
       },
       {
         url: "https://global-warming.org/api/ocean-warming-api",
-        key: "oceanData",
-        dataPath: "result",
+        key: "oceanProcessedData",
+        processor: processOceanData,
       },
       {
         url: "https://global-warming.org/api/arctic-api",
-        key: "arcticData",
-        dataPath: "arcticData",
+        key: "arcticProcessedData",
+        processor: processArcticData,
       },
       {
-        url: `${process.env.ENV_DOMAIN}/api/data`,
-        key: "energyData",
-        dataPath: null,
+        url: `${process.env.ENV_DOMAIN}/api/energydata`,
+        key: "energyProcessedData",
       },
     ];
 
     const fetchApiData = (url) =>
       axios.get(url, { timeout: 5000 }).then((res) => res.data);
 
-    const fetchAndCacheData = async (key, url) => {
+    const fetchAndCacheData = async (key, url, processor = null) => {
       let data = await fetchDataFromCache(url);
+
       if (!data) {
         data = await getCachedData(
           key,
           () => fetchApiData(url),
-          30 * 24 * 60 * 60
+          30 * 24 * 60 * 60,
+          processor
         );
       }
+
       return data;
     };
 
-    const apiDataPromises = apiDataMappings.map(({ url, key }) =>
-      fetchAndCacheData(key, url)
+    const apiDataPromises = apiDataMappings.map(({ url, key, processor }) =>
+      fetchAndCacheData(key, url, processor)
     );
 
     const results = await Promise.allSettled(apiDataPromises);
 
-    logger.debug("All data fetching operations completed.");
-
-    const props = apiDataMappings.reduce((acc, { key, dataPath }, index) => {
+    const props = apiDataMappings.reduce((acc, { key }, index) => {
       const result = results[index];
       if (result.status === "fulfilled") {
-        acc[key] = dataPath
-          ? result.value?.[dataPath] || null
-          : result.value || null;
+        acc[key] = result.value || null;
       } else {
         acc[key] = null;
         logger.error(`Failed to fetch data for ${key}: ${result.reason}`);

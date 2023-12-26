@@ -1,10 +1,8 @@
 import { ResponsiveBar } from "@nivo/bar";
 import Loading from "../Loading";
 
-const ChartEnergy = ({ energyData }) => {
-  console.log("energyData: ", energyData);
-
-  if (!energyData) return <Loading />;
+const ChartEnergy = ({ energyProcessedData }) => {
+  if (!energyProcessedData) return <Loading />;
 
   const formatValue = (value, forTooltip = false) => {
     let formattedValue;
@@ -56,7 +54,7 @@ const ChartEnergy = ({ energyData }) => {
         <h2 className="chart-title">Renewable Energy (GWh)</h2>
         <h2 className="chart-title">Production and Consumption </h2>
         <ResponsiveBar
-          data={energyData}
+          data={energyProcessedData}
           keys={["production", "consumption"]}
           indexBy="country"
           margin={{ top: 15, right: 15, bottom: 115, left: 50 }}

@@ -7,7 +7,12 @@ import ChartEnergy from "./charts/ChartEnergy";
 import ScrollButton from "./ScrollButton";
 
 function ChartsComponent({
-  data: { globalData, oceanData, arcticData, energyData },
+  data: {
+    globalProcessedData,
+    oceanProcessedData,
+    arcticProcessedData,
+    energyProcessedData,
+  },
 }) {
   const { chartsRef } = useContext(Context);
 
@@ -39,10 +44,19 @@ function ChartsComponent({
   return (
     <>
       <div className="charts-container" ref={chartsRef}>
-        <ChartGlobal globalData={globalData} commonProps={commonProps} />
-        <ChartOcean oceanData={oceanData} commonProps={commonProps} />
-        <ChartArctic arcticData={arcticData} commonProps={commonProps} />
-        <ChartEnergy energyData={energyData} />
+        <ChartGlobal
+          globalProcessedData={globalProcessedData}
+          commonProps={commonProps}
+        />
+        <ChartOcean
+          oceanProcessedData={oceanProcessedData}
+          commonProps={commonProps}
+        />
+        <ChartArctic
+          arcticProcessedData={arcticProcessedData}
+          commonProps={commonProps}
+        />
+        <ChartEnergy energyProcessedData={energyProcessedData} />
       </div>
 
       <ScrollButton direction="top" />
