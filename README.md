@@ -1,15 +1,13 @@
 # ClimateScoop: Climate Data Visualization
 
-Welcome to ClimateScoop, an evolving web application designed to provide insightful visualizations and analysis of climate data. Utilizing a modern tech stack, this project not only showcases my technical skills but also my commitment to contributing to the global discussion on climate change.
-
 ## Table of Contents
 
 - [Project Overview](#project-overview)
 - [Technical Features](#technical-features)
 - [CI/CD and Environment Strategy](#cicd-and-environment-strategy)
-- [Installation and Usage](#installation-and-usage)
 - [Technologies Used](#technologies-used)
 - [Testing](#testing)
+- [Installation and Usage](#installation-and-usage)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -18,13 +16,6 @@ Welcome to ClimateScoop, an evolving web application designed to provide insight
 ClimateScoop merges two bootcamp projects, revitalized with a focus on climate data. It's a platform demonstrating development skills and engagement with climate change issues.
 
 [View Live](https://climatescoop.vercel.app/)
-
-<details>
-  <summary>More about the project</summary>
-
-The platform features engaging charts visualizing climate indicators like global temperature changes, ocean warming trends, and arctic ice melt. It's a unique blend of data-driven storytelling and technical innovation, designed to enhance understanding and awareness of climate change.
-
-</details>
 
 ## Technical Features
 
@@ -35,6 +26,7 @@ The platform features engaging charts visualizing climate indicators like global
 - **Responsive Design**: Optimized for a seamless experience across various devices.
 - **Performance Optimization**: Leverages Next.js for efficient server-side rendering and dynamic data loading.
 - **Accessibility and User Experience**: Focused on accessibility and straightforward user experience.
+- **PWA & Offline Support**: Utilizes next-pwa caching strategies in combination with a custom service worker, providing access to resources in limited connectivity or even complete offline scenarios.
 
 ## CI/CD and Environment Strategy
 
@@ -42,6 +34,20 @@ The platform features engaging charts visualizing climate indicators like global
 - **Automated Testing**: Incorporating Jest and Cypress for comprehensive testing.
 - **Redis Integration**: Configuration management for Redis in different environments.
 - **Staging and Production**: Separate environments for thorough testing and safe deployment.
+
+## Technologies Used
+
+- **Frontend**: React.js, Next.js, Sass.
+- **Backend**: Node.js, Express.js for Auth0 authentication, Redis and Cache API for caching.
+- **PWA and Offline Capabilities**: Custom service worker for offline support.
+- **Data Visualization**: Nivo for creating responsive charts.
+- **Logging and Monitoring**: Winston for error logging.
+- **Testing**: Jest for unit tests, Cypress for end-to-end tests.
+- **CI/CD Pipeline**: Employing GitHub Actions for automated testing and deployment pippeline.
+
+## Testing
+
+We aim to expand our Jest and Cypress test suites for more comprehensive coverage.
 
 ## Installation and Usage
 
@@ -57,19 +63,6 @@ The platform features engaging charts visualizing climate indicators like global
 For additional setup details or questions, feel free to [contact](mailto:support@climatescoop.app) or open an [issue](https://github.com/olicoding/ClimateScoop/issues).
 
 </details>
-
-## Technologies Used
-
-- **Frontend**: React.js, Next.js, Sass.
-- **Backend**: Node.js, Express.js for Auth0 authentication, Redis for caching.
-- **Data Visualization**: Nivo for creating responsive charts.
-- **Logging and Monitoring**: Winston for error logging.
-- **Testing**: Jest for unit tests, Cypress for end-to-end tests.
-- **CI/CD Pipeline**: Employing GitHub Actions for automated testing and deployment pippeline.
-
-## Testing
-
-We aim to expand our Jest and Cypress test suites for more comprehensive coverage.
 
 ## Contributing
 
