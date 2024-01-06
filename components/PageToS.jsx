@@ -40,13 +40,24 @@ const PageToS = () => (
         and the rights of others.
       </p>
 
-      <h2>7. Governing Law</h2>
+      <h2>7. Technical Aspects of Service Use</h2>
+      <p>
+        ClimateScoop employs advanced caching techniques as part of our
+        Progressive Web App (PWA) features to enhance the user experience,
+        especially in offline or low-connectivity scenarios. Certain data, such
+        as application assets and content, are stored locally in your browser
+        storage. This functionality allows the app to remain operational during
+        offline use. If desired, you can manually clear this cached data through
+        your browser settings.
+      </p>
+
+      <h2>8. Governing Law</h2>
       <p>
         These Terms are governed by the laws of Germany and the EU. Users agree
         to submit to the jurisdiction of these courts for any disputes.
       </p>
 
-      <h2>8. Contact Information</h2>
+      <h2>9. Contact Information</h2>
       <p>
         For questions about these Terms, please contact
         support@climatescoop.app.
