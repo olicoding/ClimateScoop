@@ -27,10 +27,21 @@ const PagePrivacy = () => (
 
       <h2>Data Storage and Security</h2>
       <p>
-        Personal data collected is securely and solely stored in Auth0&apos;s
-        database, which adheres to high standards of security. We employ
-        industry-standard security practices to protect your data from
-        unauthorized access or disclosure.
+        If you chose to register an account, your registration details are
+        securely and solely stored in Auth0&apos;s database, which adheres to
+        high standards of security. We employ industry-standard security
+        practices to protect your data from unauthorized access or disclosure.
+      </p>
+
+      <h2>Caching and Offline Accessibility</h2>
+      <p>
+        ClimateScoop incorporates caching mechanisms for improved performance,
+        accessibility and user experience. These features, integral to our PWA,
+        enable access to certain app functionalities offline. Note that this
+        caching stores data locally on your device. ClimateScoop does not
+        utilize this cached data for collecting or storing personal data beyond
+        enhancing user accessibility and experience. If desired, you can
+        manually clear this cached data through your browser settings.
       </p>
 
       <h2>Future Functionalities</h2>
