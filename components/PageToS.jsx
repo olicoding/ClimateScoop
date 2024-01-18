@@ -56,12 +56,6 @@ const PageToS = () => (
         These Terms are governed by the laws of Germany and the EU. Users agree
         to submit to the jurisdiction of these courts for any disputes.
       </p>
-
-      <h2>9. Contact Information</h2>
-      <p>
-        For questions about these Terms, please contact
-        support@climatescoop.app.
-      </p>
     </div>
   </div>
 );

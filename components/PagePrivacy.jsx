@@ -65,8 +65,7 @@ const PagePrivacy = () => (
       <p>
         In accordance with GDPR, users have the right to access, rectify, erase,
         or restrict the processing of their personal data. If you wish to
-        exercise any of these rights, please contact us at
-        support@climatescoop.app.
+        exercise any of these rights, please contact us.
       </p>
 
       <h2>Changes to This Policy</h2>
@@ -79,7 +78,7 @@ const PagePrivacy = () => (
       <h2>Contact Us</h2>
       <p>
         If you have any questions or concerns about our Privacy Policy or data
-        practices, please contact us at support@climatescoop.app.
+        practices, please contact us.
       </p>
     </div>
   </div>
