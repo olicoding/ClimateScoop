@@ -1,10 +1,12 @@
+import { useUser } from "@auth0/nextjs-auth0/client";
 import { useContext } from "react";
 import { Context } from "../context/ContextProvider";
 import Loading from "./Loading";
 import ScrollButton from "./ScrollButton";
 
 const Hero = () => {
-  const { isAtPageTop, user, username, isLoading } = useContext(Context);
+  const { user, isLoading } = useUser();
+  const { isAtPageTop, username } = useContext(Context);
 
   if (isLoading) return <Loading />;
 
