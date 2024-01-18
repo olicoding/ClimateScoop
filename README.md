@@ -19,10 +19,10 @@ ClimateScoop merges two bootcamp projects, revitalized with a focus on climate d
 
 ## Technical Features
 
-- **Interactive Data Visualization**: Using `@nivo/line` for easily understandable climate data presentations.
+- **Interactive Data Visualization**: Using `@nivo/line` for interactive climate data chart presentations.
 - **Data Caching with Redis**: Implemented Redis for efficient caching of API responses, reducing load times and API call frequency.
 - **Advanced Error Handling**: Enhanced application resilience with comprehensive error handling and logging using Winston.
-- **Auth0 Integration**: Secure user authentication, with plans for more interactive, personalized features.
+- **Auth0 Integration**: Secure user authentication, with future plans for more personalized features.
 - **Responsive Design**: Optimized for a seamless experience across various devices.
 - **Performance Optimization**: Leverages Next.js for efficient server-side rendering and dynamic data loading.
 - **Accessibility and User Experience**: Focused on accessibility and straightforward user experience.
@@ -43,11 +43,7 @@ ClimateScoop merges two bootcamp projects, revitalized with a focus on climate d
 - **Data Visualization**: Nivo for creating responsive charts.
 - **Logging and Monitoring**: Winston for error logging.
 - **Testing**: Jest for unit tests, Cypress for end-to-end tests.
-- **CI/CD Pipeline**: Employing GitHub Actions for automated testing and deployment pippeline.
-
-## Testing
-
-We aim to expand our Jest and Cypress test suites for more comprehensive coverage.
+- **CI/CD Pipeline**: Employing GitHub Actions for automated testing and deployment pipeline to Vercel.
 
 ## Installation and Usage
 
@@ -60,7 +56,7 @@ We aim to expand our Jest and Cypress test suites for more comprehensive coverag
 4. Configure `.env.local` with Redis connection details and other environment variables as per `.env.sample`.
 5. Start the server with `npm run dev`.
 
-For additional setup details or questions, feel free to [contact](mailto:support@climatescoop.app) or open an [issue](https://github.com/olicoding/ClimateScoop/issues).
+For additional setup details or questions, feel free to reach out or open an [issue](https://github.com/olicoding/ClimateScoop/issues).
 
 </details>
 

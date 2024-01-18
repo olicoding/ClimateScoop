@@ -1,11 +1,13 @@
 import Image from "next/image";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import { useContext } from "react";
 import { Context } from "../context/ContextProvider";
 import userImage from "../public/media/user.png";
 import Loading from "./Loading";
 
 const PageProfile = () => {
-  const { user, username, isLoading } = useContext(Context);
+  const { user, isLoading } = useUser();
+  const { username } = useContext(Context);
 
   if (isLoading) return <Loading />;
   if (!user) return <div>No user data available.</div>;
