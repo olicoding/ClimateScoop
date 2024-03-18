@@ -3,7 +3,7 @@
 import { clientsClaim } from "workbox-core";
 import { cleanupOutdatedCaches } from "workbox-precaching";
 
-const currentCacheVersion = "cache-v1";
+const currentCacheVersion = "cache-v2";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
