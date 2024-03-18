@@ -1,16 +1,19 @@
 import axios from "axios";
 import Head from "next/head";
 import { getCachedData } from "../lib/redis";
+import {
+  ArcticDataSchema,
+  GlobalDataSchema,
+  OceanDataSchema,
+} from "../lib/schemas/chartsDataSchema";
 import logger from "../lib/winston";
 import PageHome from "../components/PageHome";
 import processArcticData from "../utils/processArcticData";
 import processGlobalData from "../utils/processGlobalData";
 import processOceanData from "../utils/processOceanData";
 
-async function fetchDataFromCache(url) {
-  if (typeof caches === "undefined") return null;
-  const response = await caches.match(url);
-  return response ? response.json() : null;
+async function fetchApiData(url) {
+  return axios.get(url, { timeout: 5000 }).then((res) => res.data);
 }
 
 export default function Home(props) {
@@ -32,44 +35,46 @@ export async function getStaticProps() {
       {
         url: "https://global-warming.org/api/temperature-api",
         key: "globalProcessedData",
+        schema: GlobalDataSchema,
         processor: processGlobalData,
       },
       {
         url: "https://global-warming.org/api/ocean-warming-api",
         key: "oceanProcessedData",
+        schema: OceanDataSchema,
         processor: processOceanData,
       },
       {
         url: "https://global-warming.org/api/arctic-api",
         key: "arcticProcessedData",
+        schema: ArcticDataSchema,
         processor: processArcticData,
       },
       {
         url: `${process.env.ENV_DOMAIN}/api/energydata`,
         key: "energyProcessedData",
+        schema: null,
       },
     ];
 
-    const fetchApiData = (url) =>
-      axios.get(url, { timeout: 5000 }).then((res) => res.data);
+    const fetchAndCacheData = async ({
+      key,
+      url,
+      schema,
+      processor,
+      preValidationProcess,
+    }) =>
+      getCachedData(
+        key,
+        () => fetchApiData(url),
+        30 * 24 * 60 * 60,
+        schema,
+        processor,
+        preValidationProcess
+      );
 
-    const fetchAndCacheData = async (key, url, processor = null) => {
-      let data = await fetchDataFromCache(url);
-
-      if (!data) {
-        data = await getCachedData(
-          key,
-          () => fetchApiData(url),
-          30 * 24 * 60 * 60,
-          processor
-        );
-      }
-
-      return data;
-    };
-
-    const apiDataPromises = apiDataMappings.map(({ url, key, processor }) =>
-      fetchAndCacheData(key, url, processor)
+    const apiDataPromises = apiDataMappings.map((mapping) =>
+      fetchAndCacheData(mapping)
     );
 
     const results = await Promise.allSettled(apiDataPromises);
