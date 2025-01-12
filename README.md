@@ -56,7 +56,7 @@ Built with a modern tech stack, ClimateScoop integrates:
 - **Frontend:** React.js and Next.js for dynamic, server-side rendered interfaces.
 - **Backend & Authentication:** Node.js, Express.js, and Auth0 for robust backend services and secure user authentication.
 - **Data Visualization:** `@nivo/line` for creating interactive and responsive charts.
-- **Caching & Offline:** Redis for efficient data caching and a custom service worker for PWA capabilities.
+- **Caching & Offline:** Redis for efficient data caching and a custom service worker for PWA capabilities. (Redis has been removed since the new policy of the provider)
 - **Logging:** Winston for detailed error logging and system monitoring.
 
 ## Getting Started
