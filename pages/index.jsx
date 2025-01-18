@@ -1,27 +1,19 @@
-import axios from "axios";
 import Head from "next/head";
-import { getCachedData } from "../lib/redis";
+import PageHome from "../components/PageHome";
 import {
-  ArcticDataSchema,
   GlobalDataSchema,
   OceanDataSchema,
+  ArcticDataSchema,
 } from "../lib/schemas/chartsDataSchema";
-import logger from "../lib/winston";
-import PageHome from "../components/PageHome";
-import processArcticData from "../utils/processArcticData";
 import processGlobalData from "../utils/processGlobalData";
 import processOceanData from "../utils/processOceanData";
-
-async function fetchApiData(url) {
-  return axios.get(url, { timeout: 5000 }).then((res) => res.data);
-}
+import processArcticData from "../utils/processArcticData";
+import processEnergyData from "../utils/processEnergyData";
 
 export default function Home(props) {
   return (
     <>
       <Head>
-        <meta name="description" content="Visual Insights on Climate Change" />
-        <link rel="canonical" href="https://climatescoop.app" />
         <title>ClimateScoop</title>
       </Head>
       <PageHome chartsData={props} />
@@ -30,74 +22,73 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  try {
-    const apiDataMappings = [
-      {
-        url: "https://global-warming.org/api/temperature-api",
-        key: "globalProcessedData",
-        schema: GlobalDataSchema,
-        processor: processGlobalData,
-      },
-      {
-        url: "https://global-warming.org/api/ocean-warming-api",
-        key: "oceanProcessedData",
-        schema: OceanDataSchema,
-        processor: processOceanData,
-      },
-      {
-        url: "https://global-warming.org/api/arctic-api",
-        key: "arcticProcessedData",
-        schema: ArcticDataSchema,
-        processor: processArcticData,
-      },
-      {
-        url: `${process.env.ENV_DOMAIN}/api/energydata`,
-        key: "energyProcessedData",
-        schema: null,
-      },
-    ];
+  const fs = require("fs");
+  const path = require("path");
 
-    const fetchAndCacheData = async ({
-      key,
-      url,
-      schema,
-      processor,
-      preValidationProcess,
-    }) =>
-      getCachedData(
-        key,
-        () => fetchApiData(url),
-        30 * 24 * 60 * 60,
-        schema,
-        processor,
-        preValidationProcess
-      );
+  const fetchWithValidation = async (url, schema) => {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-    const apiDataPromises = apiDataMappings.map((mapping) =>
-      fetchAndCacheData(mapping)
-    );
+      const response = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
 
-    const results = await Promise.allSettled(apiDataPromises);
+      if (!response.ok)
+        throw new Error(`HTTP error! status: ${response.status}`);
 
-    const props = apiDataMappings.reduce((acc, { key }, index) => {
-      const result = results[index];
-      if (result.status === "fulfilled") {
-        acc[key] = result.value || null;
-      } else {
-        acc[key] = null;
-        logger.error(`Failed to fetch data for ${key}: ${result.reason}`);
-      }
-      return acc;
-    }, {});
+      const data = await response.json();
+      return schema.parse(data);
+    } catch (error) {
+      return null;
+    }
+  };
 
-    return {
-      props,
-      revalidate: 600,
-    };
-  } catch (error) {
-    logger.error(`Error in getStaticProps: ${error.message}`);
-    return {
-      props: { chartsData: null },
-    };
-  }
+  const [globalRes, oceanRes, arcticRes] = await Promise.allSettled([
+    fetchWithValidation(
+      "https://global-warming.org/api/temperature-api",
+      GlobalDataSchema
+    ),
+    fetchWithValidation(
+      "https://global-warming.org/api/ocean-warming-api",
+      OceanDataSchema
+    ),
+    fetchWithValidation(
+      "https://global-warming.org/api/arctic-api",
+      ArcticDataSchema
+    ),
+  ]);
+
+  const energyDataPath = path.join(process.cwd(), "public/data/energydata.csv");
+  const energyData = fs.readFileSync(energyDataPath, "utf8");
+
+  const props = {
+    globalProcessedData:
+      globalRes.status === "fulfilled" && globalRes.value
+        ? processGlobalData(globalRes.value)
+        : null,
+    oceanProcessedData:
+      oceanRes.status === "fulfilled" && oceanRes.value
+        ? processOceanData(oceanRes.value)
+        : null,
+    arcticProcessedData:
+      arcticRes.status === "fulfilled" && arcticRes.value
+        ? processArcticData({
+            arcticData: Object.entries(arcticRes.value.arcticData.data)
+              .map(([yearMonth, data]) => ({
+                year: parseInt(yearMonth.substring(0, 4)),
+                extent:
+                  parseFloat(data.value) !== -9999
+                    ? parseFloat(data.value)
+                    : null,
+              }))
+              .filter((item) => item.extent !== null && !isNaN(item.extent)),
+          })
+        : null,
+    energyProcessedData: processEnergyData(energyData),
+  };
+
+  return {
+    props,
+    revalidate: 600,
+  };
 }

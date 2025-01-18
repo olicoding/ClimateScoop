@@ -10,7 +10,8 @@
   transition: map-get($transitions, transform), map-get($transitions, opacity);
   width: 100%;
   z-index: 1000;
-  display: flex;
+  // display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 

@@ -1,4 +1,4 @@
-# Contributing to ClimateScoop
+<!-- # Contributing to ClimateScoop
 
 We appreciate your interest in contributing to ClimateScoop! Here's how you can help:
 
@@ -29,4 +29,4 @@ We appreciate your interest in contributing to ClimateScoop! Here's how you can 
 
 Your contributions will be licensed under the project's [MIT License](LICENSE.md).
 
-Happy contributing!
+Happy contributing! -->

@@ -6,7 +6,7 @@ export default function ToS() {
     <>
       <Head>
         <meta name="description" content="ClimateScoop Terms of Service." />
-        <link rel="canonical" href="https://climatescoop.app/tos" />
+        <link rel="canonical" href="https://climatescoop.olicoding.dev/tos" />
         <title>ClimateScoop | Terms of Service</title>
       </Head>
       <PageToS />

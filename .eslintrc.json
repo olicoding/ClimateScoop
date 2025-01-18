@@ -1,25 +1,19 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true,
-    "serviceworker": true
+    "node": true
   },
   "settings": {
     "react": {
       "version": "detect"
     }
   },
-  "plugins": ["import", "jsx-a11y", "react", "react-hooks"],
-  "extends": [
-    "airbnb",
-    "prettier",
-    "plugin:jest/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
-  ],
+  "plugins": ["react", "react-hooks"],
+  "extends": ["next/core-web-vitals"],
   "parserOptions": {
-    "ecmaVersion": 13,
+    "ecmaVersion": 2022,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -27,20 +21,10 @@
   },
   "rules": {
     "react/prop-types": "off",
-    "prefer-arrow-callback": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "react/function-component-definition": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "import/no-unresolved": ["error", { "ignore": ["@vercel/analytics/react"] }]
-  },
-  "overrides": [
-    {
-      "files": ["worker/index.js"],
-      "rules": {
-        "import/no-extraneous-dependencies": "off"
-      }
-    }
-  ]
+    "react-hooks/exhaustive-deps": "warn"
+  }
 }
