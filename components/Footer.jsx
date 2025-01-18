@@ -8,6 +8,9 @@ const Footer = () => {
       <nav>
         <ul className="footer-list">
           <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
             <Link href="/tos">Terms of Service</Link>
           </li>
           <li>

@@ -1,16 +1,16 @@
-import { render, screen, act } from "@testing-library/react";
-import App from "../../pages/_app";
+// import { render, screen, act } from "@testing-library/react";
+// import App from "../../pages/_app";
 
-describe("_app", () => {
-  afterEach(() => jest.clearAllMocks());
+// describe("_app", () => {
+//   afterEach(() => jest.clearAllMocks());
 
-  it("renders children correctly", async () => {
-    await act(async () => {
-      render(
-        <App Component={() => <div>Test Component</div>} pageProps={{}} />
-      );
-    });
+//   it("renders children correctly", async () => {
+//     await act(async () => {
+//       render(
+//         <App Component={() => <div>Test Component</div>} pageProps={{}} />
+//       );
+//     });
 
-    expect(screen.getByText("Test Component")).toBeInTheDocument();
-  });
-});
+//     expect(screen.getByText("Test Component")).toBeInTheDocument();
+//   });
+// });

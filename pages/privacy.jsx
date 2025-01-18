@@ -6,7 +6,10 @@ export default function Privacy() {
     <>
       <Head>
         <meta name="description" content="ClimateScoop Privacy Policy." />
-        <link rel="canonical" href="https://climatescoop.app/privacy" />
+        <link
+          rel="canonical"
+          href="https://climatescoop.olicoding.dev/privacy"
+        />
         <title>ClimateScoop | Privacy</title>
       </Head>
       <PagePrivacy />
