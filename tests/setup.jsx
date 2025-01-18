@@ -9,8 +9,3 @@ jest.mock("next/router", () => ({
     asPath: "/",
   }),
 }));
-
-jest.mock("next/image", () => ({
-  __esModule: true,
-  default: () => <img src="/default-profile.jpg" alt="default-profile" />,
-}));
