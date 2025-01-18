@@ -1,22 +1,15 @@
 /node_modules/
-
 /.next/
 /out/
-
 /build/
-
 /coverage/
-
-/cypress/
 /test-results/
 
 .DS_Store
-
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/lib/winston/
 
 .env.local
 .env.development.local
@@ -24,19 +17,8 @@ yarn-error.log*
 .env.production.local
 
 .vercel
-
 .vscode/
 .idea/
 
 .babelrc
-cypress.config.js
-
-yarn.lock
 package-lock.json
-
-public/sw.js
-public/sw.js.map
-public/worker*.js
-public/fallback*.js
-public/workbox*.js
-public/workbox*.js.map

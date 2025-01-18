@@ -2,7 +2,7 @@
 
 Explore meaningful insights into climate change through innovative data visualization.
 
-[View Live](https://climatescoop.app/)
+[View Live](https://climatescoop.olicoding.dev/)
 
 ## Table of Contents
 
@@ -31,32 +31,29 @@ ClimateScoop employs a structured approach to data handling, from fetching and v
 |           |     | (with Zod) |     |  Processing  |     | Visualization |
 |           |     |            |     |              |     |               |
 +-----------+     +------------+     +--------------+     +---------------+
-                        |                                         |
-                        v                                         v
-                  +-----+------+                         +--------+-------+
-                  |            |                         |                |
-                  | Caching in +------------------------>+  Display on UI |
-                  |   Redis    |                         |    (Charts)    |
-                  |            |                         |                |
-                  +------------+                         +----------------+
+                                                                |
+                                                                v
+                                                      +----------------+
+                                                      |                |
+                                                      |  Display on UI |
+                                                      |    (Charts)    |
+                                                      |                |
+                                                      +----------------+
 ```
 
 ## Development Practices
 
 ClimateScoop is developed with best practices in web development at its core, including:
 
-- **Linting and Testing:** Utilizes ESLint for code quality and consistency, alongside Jest and Cypress for comprehensive testing.
-- **CI/CD Pipeline:** Implements a multi-stage CI/CD pipeline with GitHub Actions for automated testing and deployment across development, staging, and production environments.
-- **PWA and Offline Support:** Leverages next-pwa and custom service workers for offline functionality, enhancing accessibility and user engagement.
+- **Linting:** Utilizes ESLint for code quality and consistency.
+- **CI/CD Pipeline:** Implements a multi-stage CI/CD pipeline with GitHub Actions for automated deployment across development, staging, and production environments.
 
 ## Technologies and Tools
 
 Built with a modern tech stack, ClimateScoop integrates:
 
 - **Frontend:** React.js and Next.js for dynamic, server-side rendered interfaces.
-- **Backend & Authentication:** Node.js, Express.js, and Auth0 for robust backend services and secure user authentication.
 - **Data Visualization:** `@nivo/line` for creating interactive and responsive charts.
-- **Caching & Offline:** Redis for efficient data caching and a custom service worker for PWA capabilities. (Redis has been removed since the new policy of the provider)
 - **Logging:** Winston for detailed error logging and system monitoring.
 
 ## Getting Started
@@ -68,8 +65,7 @@ To set up ClimateScoop locally:
 
 1. Clone the repository.
 2. Install dependencies with `npm install`.
-3. Configure `.env.local` for Redis and other environment specifics.
-4. Start the development server with `npm run dev`.
+3. Start the development server with `npm run dev`.
 
 </details>
 
